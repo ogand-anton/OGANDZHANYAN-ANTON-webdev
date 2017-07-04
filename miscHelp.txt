@@ -1,10 +1,11 @@
+-- Miscellaneous commands, shortcuts, tips that I am recording for my own reference.
+
 git init
 git remote add github https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev.git
 
 git commit -a -m "<message>"
+git push -u github <branch>
 
 git tag
 git show <tag>
 git tag -a <tag> -m "<message>"
-
-git push -u github <branch>

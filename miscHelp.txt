@@ -1,11 +1,41 @@
 -- Miscellaneous commands, shortcuts, tips that I am recording for my own reference.
 
+-----------
+--- GIT ---
+-----------
+
+-- configure git to this directory
 git init
+
+-- initializing remoting
 git remote add github https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev.git
 
+-- commit & push
 git commit -a -m "<message>"
 git push -u github <branch>
 
+-- list all tags
 git tag
+
+-- show details about tag
 git show <tag>
+
+-- tag commit
 git tag -a <tag> -m "<message>"
+
+-----------
+--- NPM ---
+-----------
+
+-- install npm modules for project
+npm install
+
+-- install specific npm module and update package.json
+npm install <library> --save
+
+-------------
+--- MONGO ---
+-------------
+
+-- summon db demon
+mongod

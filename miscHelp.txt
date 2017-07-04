@@ -27,8 +27,8 @@ git tag -a <tag> -m "<message>"
 --- NPM ---
 -----------
 
--- install npm modules for project
-npm install
+-- initialize a Node.js
+npm init
 
 -- install specific npm module and update package.json
 npm install <library> --save

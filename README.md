@@ -9,8 +9,8 @@ About Repo:
 
 Links:
 - Heroku app:   https://ogandzhanyan-anton-webdev.herokuapp.com/
-- Project app:  (None, yet...)
-- Assignment 1: (None, yet...)
+- Project app:  https://ogandzhanyan-anton-webdev.herokuapp.com/project/index.html
+- Assignment 1: https://ogandzhanyan-anton-webdev.herokuapp.com/assignment/assignment1.html
 - Assignment 2: (None, yet...)
 - Assignment 3: (None, yet...)
 - Assignment 4: (None, yet...)

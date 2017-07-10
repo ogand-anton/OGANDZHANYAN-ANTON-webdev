@@ -1,0 +1,45 @@
+/************************************/
+/*          Wallpaper Panel         */
+/************************************/
+.wallpaperPanel {
+    position: fixed;
+    width: 100%;
+    height: 150px;
+    background-color: lightblue;
+}
+
+/************************************/
+/*          Topics Panel            */
+/************************************/
+.topicPanel {
+    position: fixed;
+    width: 150px;
+    top: 150px;
+    background-color: red;
+}
+
+.topicPanel li {
+    height: 40px;
+    text-align: center;
+}
+
+.topicPanel li:nth-child(even) {
+    background-color: white;
+}
+
+.topicPanel li:nth-child(odd) {
+    background-color: darkslategrey;
+}
+
+
+/************************************/
+/*          Topics Details          */
+/************************************/
+.topicDetails {
+    position: fixed;
+    top: 150px;
+    left: 150px;
+    width: 100%;
+    height: 500px;
+    background-color: green;
+}

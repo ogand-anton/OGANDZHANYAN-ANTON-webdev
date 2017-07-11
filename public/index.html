@@ -5,43 +5,66 @@
     <title>Anton's Home Page</title>
 
     <!-- CSS -->
-    <link href="css/reset.css" rel="stylesheet"/>
     <link href="css/home.css" rel="stylesheet"/>
+    <link href="vendor/css/bootstrap.css" rel="stylesheet"/>
+
+    <!-- JS -->
+    <script async href="vendor/js/bootstrap.js"></script>
 </head>
 <body>
-    <!--<img src="images/wallpaper1.jpg" class="wallpaper" alt="Wallpaper">-->
-    <div class="wallpaperPanel">
-        Anton's Home Page is a work in progress: Sorry...
-    </div>
-    <!--<ul class="topicPanel">
-        <li>Topic 1</li>
-        <li>Topic 2</li>
-        <li>Topic 3</li>
-    </ul>-->
-    <div class="topicDetails">
-        <span>Details of a topic here...But here is the stuff that came with the templates</span>
+    <!-- Bootstrap Nav Bar - still need to initialize with JS -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand & Collapsed Menu -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Anton's Home</a>
+                <button type="button"
+                        class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger"
+                        data-toggle="collapse"
+                        data-target="#nav-topics"
+                        aria-expanded="false">
+                </button>
+            </div>
 
-        <h1>Web Dev Course Home Page</h1>
+            <!-- Nav Links -->
+            <div class="collapse navbar-collapse" id="nav-topics">
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="#welcomePanel">Welcome</a></li>
+                    <li><a href="#bioPanel">Bio</a></li>
+                    <li><a href="#linksPanel">Links</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <p>
-            Customize this home page to your linking.
-        </p>
-
-        <h2>Required links</h2>
-        <ul>
-            <li>
-                <a href="project/index.html">Project</a>
-            </li>
-            <li>
-                <a href="assignment/index.html">Assignments</a>
-            </li>
-            <li>
-                <a href="test/index.html">Test MongoDB</a>
-            </li>
-            <li>
-                <a href="https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev">My public repository at GitHub.com</a>
-            </li>
-        </ul>
+    <!-- Panels -->
+    <div class="panelContainer">
+        <div id="welcomePanel" class="container-fluid">Anton's Home Page is a work in progress: Sorry...</div>
+        <div id="bioPanel" class="container-fluid">Bio here eventually...</div>
+        <div id="linksPanel" class="container-fluid">
+            Links
+            <ul>
+                <li>
+                    <a href="project/index.html">Project</a>
+                </li>
+                <li>
+                    <a href="assignment/index.html">Assignments</a>
+                </li>
+                <li>
+                    <a href="test/index.html">Test MongoDB</a>
+                </li>
+                <li>
+                    <a href="https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev">
+                        My public repository at GitHub.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>Test item</div>
+        <div>Test item</div>
+        <div>Test item</div>
+        <div>Test item</div>
+        <div>Test item</div>
     </div>
 </body>
 </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Page</title>
+
+    <!-- CSS -->
+    <link href="../../vendor/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left" href="page-list.html">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Pages</span>
+            </a>
+            <div class="aoa-navbar-page-name">Edit Page</div>
+            <a class="aoa-navbar-right" href="page-list.html">
+                <span>Save</span>
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Page List Sidebar -->
+        <div class="col-sm-4 hidden-xs aoa-padding-left-none">
+            <label>Your Websites</label>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="../page/page-list.html">Template Page</a>
+                    <a class="pull-right" href="page-edit.html">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Edit Page Options -->
+        <div class="col-xs-12 col-sm-8 aoa-padding-side-none">
+            <form>
+                <div class="form-group">
+                    <label for="name">Page Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Page Name" value="My Page">
+                </div>
+                <div class="form-group">
+                    <label for="title">Page Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Page Title" value="My Awesome Page!">
+                </div>
+            </form>
+            <a class="btn-block btn btn-danger" href="page-list.html">Delete</a>
+        </div>
+    </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-item col-xs-6" href="../user/profile.html">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <a class="aoa-navbar-item col-xs-6" href="page-new.html">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

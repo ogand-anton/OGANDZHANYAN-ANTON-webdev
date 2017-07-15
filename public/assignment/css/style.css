@@ -1,7 +1,91 @@
+/************************/
+/*        Forms         */
+/************************/
+
 input.form-control {
     margin-bottom: 5px;
 }
 
-body {
-    padding-top: 36px;
+/************************/
+/*    Misc. Components  */
+/************************/
+
+a.col-xs-push-12 {
+    position: sticky;
+}
+
+/************************/
+/*        Nav Bar       */
+/************************/
+nav {
+    background-color: rgb(248, 248, 248);
+}
+
+nav + * {
+    margin: 50px 0 50px 0;
+    padding: 10px 0 10px 0;
+}
+
+nav > div {
+    width: 100%;
+}
+
+nav a {
+    height: 100%;
+}
+
+.aoa-navbar-page-name {
+    color: rgb(255, 255, 255);
+    left: 0;
+    margin: 15px 0 15px 0;
+    position: fixed;
+    text-align: center;
+    width:100%;
+    z-index: -1;
+}
+
+.aoa-navbar-item,
+.aoa-navbar-left,
+.aoa-navbar-right {
+    padding: 15px 0 15px 0;
+}
+
+.aoa-navbar-item,
+.aoa-navbar-left {
+    float: left;
+}
+
+.aoa-navbar-right {
+    float: right;
+}
+
+.navbar-fixed-bottom {
+    text-align: center;
+}
+
+.navbar-fixed-bottom a:nth-child(even) {
+}
+
+/************************/
+/*      Overrides       */
+/************************/
+
+a:hover{
+    text-decoration: none;
+}
+
+/************************/
+/*      Utilities       */
+/************************/
+.aoa-padding-side-none {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.aoa-padding-right-none {
+    padding-right: 0;
+}
+
+.aoa-padding-left-none {
+    padding-left: 0;
 }

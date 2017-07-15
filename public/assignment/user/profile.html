@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+    <!-- CSS -->
+    <link href="../../vendor/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left" href="login.html">
+                <i class="glyphicon glyphicon-log-out"></i>
+                <span>Logout</span>
+            </a>
+            <div class="aoa-navbar-page-name">Profile</div>
+            <a class="aoa-navbar-right" href="profile.html">
+                <span>Save</span>
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" class="form-control" id="first-name" placeholder="Alice">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+            </div>
+        </form>
+        <a class="btn-block btn btn-primary" href="../website/website-list.html">Websites</a>
+        <a class="btn-block btn btn-danger" href="login.html">Logout</a>
+    </div>
+</body>
+</html>

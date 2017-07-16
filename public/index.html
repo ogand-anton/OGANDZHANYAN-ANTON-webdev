@@ -5,66 +5,110 @@
     <title>Anton's Home Page</title>
 
     <!-- CSS -->
-    <link href="css/home.css" rel="stylesheet"/>
     <link href="vendor/css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
 
     <!-- JS -->
     <script async href="vendor/js/bootstrap.js"></script>
 </head>
 <body>
-    <!-- Bootstrap Nav Bar - still need to initialize with JS -->
+    <!-- Nav bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand & Collapsed Menu -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Anton's Home</a>
-                <button type="button"
-                        class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger"
-                        data-toggle="collapse"
-                        data-target="#nav-topics"
-                        aria-expanded="false">
-                </button>
-            </div>
-
-            <!-- Nav Links -->
-            <div class="collapse navbar-collapse" id="nav-topics">
-                <ul class="nav navbar-nav pull-right">
-                    <li><a href="#welcomePanel">Welcome</a></li>
-                    <li><a href="#bioPanel">Bio</a></li>
-                    <li><a href="#linksPanel">Links</a></li>
-                </ul>
-            </div>
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left aoa-icon-padding"
+               href="https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev"
+               target="_blank">
+                <img class="aoa-icon" src="images/GitHub-Mark-Light-32px.png"/>
+                <span>GitHub Repo</span>
+            </a>
+            <div class="aoa-navbar-page-name">Anton's Home</div>
+            <a class="aoa-navbar-right"
+               href="docs/Ogandzhanyan_Anton%20-%20Resume%202017.pdf"
+               target="_blank">
+                <span>Resume</span>
+                <i class="glyphicon glyphicon-download-alt"></i>
+            </a>
         </div>
     </nav>
 
     <!-- Panels -->
-    <div class="panelContainer">
-        <div id="welcomePanel" class="container-fluid">Anton's Home Page is a work in progress: Sorry...</div>
-        <div id="bioPanel" class="container-fluid">Bio here eventually...</div>
-        <div id="linksPanel" class="container-fluid">
-            Links
-            <ul>
-                <li>
-                    <a href="project/index.html">Project</a>
-                </li>
-                <li>
-                    <a href="assignment/index.html">Assignments</a>
-                </li>
-                <li>
-                    <a href="test/index.html">Test MongoDB</a>
-                </li>
-                <li>
-                    <a href="https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev">
-                        My public repository at GitHub.com
-                    </a>
-                </li>
-            </ul>
+    <div class="container-fluid aoa-padding-lr-none aoa-padding-bottom-none aoa-container-panel">
+        <div class="container-fluid">
+            <div class="col-xs-12 col-sm-3">
+                <img class="img-circle" src="images/kitty.jpg"/>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h2>Welcome to Anton's Home Page!</h2>
+                <i>"Certainty of death. Small chance of success. What are we waiting for?" - LOTR</i>
+            </div>
+            <div class="col-xs-0 col-sm-3"></div>
         </div>
-        <div>Test item</div>
-        <div>Test item</div>
-        <div>Test item</div>
-        <div>Test item</div>
-        <div>Test item</div>
+        <div class="container-fluid">
+            <div class="col-xs-0 col-sm-3"></div>
+            <div class="col-xs-12 col-sm-6">
+                <h3>About Me:</h3>
+                <ul class="list-unstyled">
+                    <li>Born in Samara, Russia</li>
+                    <li>Raised in the Bay State</li>
+                    <li>CS & Physics @ Northeastern </li>
+                    <li>Enjoy camping, fishing, hiking, climbing, and archery</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <img class="img-circle" src="images/northeastern.jpg"/>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-xs-12 col-sm-3">
+                <img class="img-circle" src="images/ink.jpg"/>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h3>Poetry Paradise</h3>
+                <i>Despite the abundance of published poetry, there are still many poems which are never looked upon by more than two pairs of eyes.</i>
+                <br/>
+                <br/>
+                <span>Poetry Paradise is a web platform that not only allows access to published poetry, but also gives users the ability to post their own compositions, receive feedback, edit masterpieces in progress, translate poems, or simply enjoy reading pieces of art from talented people around the globe.</span>
+                <br/>
+                <br/>
+                <a class="btn btn-block btn-secondary" href="project/index.html">To Poetry Paradise...</a>
+            </div>
+            <div class="col-xs-0 col-sm-3"></div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-xs-0 col-sm-3"></div>
+            <div class="col-xs-12 col-sm-6">
+                <h3>CS 4550 Web Dev Links</h3>
+                <div class="col-xs-12">
+                    <a class="btn btn-block btn-warning"
+                       href="assignment/index.html"
+                       target="_blank">WebDev Assignments</a>
+                </div>
+                <div class="col-xs-12">
+                    <a class="btn btn-block btn-success"
+                       href="test/index.html"
+                       target="_blank">Test MongoDB</a>
+                </div>
+            </div>
+            <div class="col-xs-0 col-sm-3"></div>
+        </div>
     </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header aoa-padding-lr-none">
+            <a class="aoa-navbar-item col-xs-4" href="index.html">
+                <i class="glyphicon glyphicon-home"></i>
+                <span>Home</span>
+            </a>
+            <a class="aoa-navbar-item col-xs-4" href="project/index.html">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <span>Poetry Paradise</span>
+            </a>
+            <a class="aoa-navbar-item col-xs-4" href="assignment/index.html">
+                <i class="glyphicon glyphicon-list"></i>
+                <span>Assignments</span>
+            </a>
+        </div>
+    </nav>
 </body>
 </html>

@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Test</title>
+
+    <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+
+    <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
-    <div class="container" ng-controller="TestController as model">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left" href="../index.html">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Home</span>
+            </a>
+            <div class="aoa-navbar-page-name">Test MongoDB</div>
+        </div>
+    </nav>
 
-        <h1>Test MongoDB</h1>
+    <div class="container-fluid" ng-controller="TestController as model">
 
         <div ng-show="model.error"
              class="alert alert-danger">

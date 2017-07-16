@@ -1,17 +1,10 @@
 /************************/
-/*        Forms         */
+/*        Images        */
 /************************/
 
-input.form-control {
-    margin-bottom: 5px;
-}
-
-/************************/
-/*    Misc. Components  */
-/************************/
-
-a.col-xs-push-12 {
-    position: sticky;
+img.aoa-icon {
+    height: 30px;
+    width: 30px;
 }
 
 /************************/
@@ -60,6 +53,13 @@ nav a {
     float: right;
 }
 
+.aoa-navbar-item.aoa-icon-padding,
+.aoa-navbar-left.aoa-icon-padding,
+.aoa-navbar-right.aoa-icon-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .navbar-fixed-bottom {
     text-align: center;
 }
@@ -73,13 +73,37 @@ a:hover{
     color: rgb(153, 224, 255);
 }
 
+/************************************/
+/*          Panel Container         */
+/************************************/
+
+.aoa-container-panel > div {
+    min-height: 200px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.aoa-container-panel > div:nth-child(even) {
+    background-color: lightskyblue;
+}
+
+.aoa-container-panel img {
+    height: 150px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 150px;
+}
+
+.aoa-container-panel .btn {
+    margin-bottom: 10px;
+}
 /************************/
 /*      Utilities       */
 /************************/
 .aoa-padding-lr-none {
-    padding-left: 0;
-    padding-right: 0;
-}
+     padding-left: 0;
+     padding-right: 0;
+ }
 
 .aoa-padding-right-none {
     padding-right: 0;

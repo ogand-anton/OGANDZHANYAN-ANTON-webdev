@@ -73,8 +73,8 @@ a:hover{
     color: rgb(153, 224, 255);
 }
 
-body {
-    font-size: 18px;
+body, a {
+    font-size: 18px !important;
 }
 
 /************************************/

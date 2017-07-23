@@ -1,0 +1,69 @@
+<div ng-controller="pageEditController">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left" href="#!/user/{{model.uid}}/website/{{model.wid}}/page">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Pages</span>
+            </a>
+            <div class="aoa-navbar-page-name">Edit Page</div>
+            <a class="aoa-navbar-right" ng-click="model.savePage(model)">
+                <span>Save</span>
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Page List Sidebar -->
+        <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
+            <label>Your Websites</label>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="page in model.pages">
+                    <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
+                    <a class="pull-right" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Edit Page Options -->
+        <div class="col-xs-12 col-md-8 aoa-padding-lr-none">
+            <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
+            <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
+
+            <form>
+                <div class="form-group">
+                    <label for="name">Page Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="Page Name"
+                           ng-model="model.name">
+                </div>
+                <div class="form-group">
+                    <label for="title">Page Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           placeholder="Page Title"
+                           ng-model="model.description">
+                </div>
+            </form>
+            <a class="btn-block btn btn-danger" ng-click="model.deletePage()">Delete</a>
+        </div>
+    </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header">
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/new">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+    </nav>
+</div>

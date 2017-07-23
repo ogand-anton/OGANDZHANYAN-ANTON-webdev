@@ -1,0 +1,36 @@
+<div ng-controller="websiteListController">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header">
+            <a class="aoa-navbar-left" href="#!/user/{{model.uid}}">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Profile</span>
+            </a>
+            <div class="aoa-navbar-page-name">Websites</div>
+        </div>
+    </nav>
+
+    <!-- Website List -->
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="website in model.websites">
+                <a href="#!/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
+                <a class="pull-right" href="#!/user/{{model.uid}}/website/{{website._id}}">
+                    <i class="glyphicon glyphicon-cog"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header">
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}/website/new">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+    </nav>
+</div>

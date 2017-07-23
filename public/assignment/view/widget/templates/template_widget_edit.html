@@ -1,0 +1,52 @@
+<div ng-controller="widgetEditController">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-left"
+               href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Widgets</span>
+            </a>
+            <div class="aoa-navbar-page-name">Edit Widget</div>
+            <a class="aoa-navbar-right" ng-click="model.saveWidget(model)">
+                <span>Save</span>
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Edit Page Options -->
+        <div class="col-xs-12 aoa-padding-lr-none">
+            <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
+            <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
+
+            <div ng-switch="model.widgetType">
+                <div ng-switch-when="HEADING">
+                    <ng-include src="'view/widget/templates/template_widget_edit_header.html'">
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <ng-include src="'view/widget/templates/template_widget_edit_image.html'">
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <ng-include src="'view/widget/templates/template_widget_edit_youtube.html'">
+                </div>
+            </div>
+
+            <a class="btn-block btn btn-danger" ng-click="model.deleteWidget()">Delete</a>
+        </div>
+    </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header ">
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <a class="aoa-navbar-item col-xs-6"
+               href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+    </nav>
+</div>

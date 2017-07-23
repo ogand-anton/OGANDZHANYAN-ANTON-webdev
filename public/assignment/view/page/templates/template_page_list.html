@@ -1,0 +1,36 @@
+<div ng-controller="pageListController">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-header">
+            <a class="aoa-navbar-left" href="#!/user/{{model.uid}}/website">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+                <span>Websites</span>
+            </a>
+            <div class="aoa-navbar-page-name">Pages</div>
+        </div>
+    </nav>
+
+    <!-- Page List -->
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="page in model.pages">
+                <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a class="pull-right" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
+                    <i class="glyphicon glyphicon-cog"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer bar -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid navbar-header">
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <a class="aoa-navbar-item col-xs-6" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/new">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+    </nav>
+</div>

@@ -2,8 +2,12 @@
 /*        Forms         */
 /************************/
 
-input.form-control {
-    margin-bottom: 5px;
+/*input.form-control {*/
+    /*margin-bottom: 5px;*/
+/*}*/
+
+.alert-danger, .alert-success {
+    margin-bottom: 10px;
 }
 
 /************************/

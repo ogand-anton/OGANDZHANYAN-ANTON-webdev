@@ -9,7 +9,7 @@ About Repo:
 
 Links:
 - Heroku app:   https://ogandzhanyan-anton-webdev.herokuapp.com/
-- Project app:  https://ogandzhanyan-anton-webdev.herokuapp.com/project/index.html
+- Project app:  https://poetryparadiseherokuapp.com
 - Assignment 1: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v1.0
 - Assignment 2: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v2.0
 - Assignment 3: (None, yet...)

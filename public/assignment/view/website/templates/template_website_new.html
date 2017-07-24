@@ -7,7 +7,7 @@
                 <span>Websites</span>
             </a>
             <div class="aoa-navbar-page-name">New Website</div>
-            <a class="aoa-navbar-right" ng-click="model.saveWebsite(model)">
+            <a class="aoa-navbar-right" ng-click="model.saveWebsite(model.websiteInfo)">
                 <span>Save</span>
                 <i class="glyphicon glyphicon-floppy-save"></i>
             </a>
@@ -39,7 +39,7 @@
                            class="form-control"
                            id="name"
                            placeholder="My Website"
-                           ng-model="model.name">
+                           ng-model="model.websiteInfo.name">
                 </div>
                 <div class="form-group">
                     <label>Description</label>
@@ -47,7 +47,7 @@
                               id="description"
                               rows="5"
                               placeholder="My website's description..."
-                              ng-model="model.description"></textarea>
+                              ng-model="model.websiteInfo.description"></textarea>
                 </div>
             </form>
         </div>

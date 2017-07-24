@@ -25,8 +25,7 @@
             if (findWebsiteRs.msg) {
                 vm.errorMsg = findWebsiteRs.msg;
             } else {
-                vm.name = findWebsiteRs.website.name;
-                vm.description = findWebsiteRs.website.description;
+                vm.websiteInfo = findWebsiteRs.website;
             }
         })();
 

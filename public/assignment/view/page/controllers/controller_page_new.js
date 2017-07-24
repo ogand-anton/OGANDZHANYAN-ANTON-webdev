@@ -22,6 +22,7 @@
         })();
 
         function savePage(pageInfo) {
+            pageInfo = pageInfo || {};
             var createPageRs = pageService.createPage(wid, pageInfo);
 
             if (createPageRs.msg){

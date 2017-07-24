@@ -19,10 +19,7 @@
                 vm.errorMsg = "User does not exist"
             }
             else {
-                vm.username = findUserRs.user.username;
-                vm.emailAddress = findUserRs.user.emailAddress;
-                vm.firstName = findUserRs.user.firstName;
-                vm.lastName = findUserRs.user.lastName;
+                vm.profileInfo = findUserRs.user;
             }
         })();
 

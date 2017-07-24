@@ -1,4 +1,5 @@
 <div ng-controller="websiteEditController">
+    <!-- TODO Refactor into separate template -->
     <!-- Nav bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid navbar-header">
@@ -7,7 +8,7 @@
                 <span>Websites</span>
             </a>
             <div class="aoa-navbar-page-name">Edit Website</div>
-            <a class="aoa-navbar-right" ng-click="model.saveWebsite(model)">
+            <a class="aoa-navbar-right" ng-click="model.saveWebsite(model.websiteInfo)">
                 <span>Save</span>
                 <i class="glyphicon glyphicon-floppy-save"></i>
             </a>
@@ -33,29 +34,32 @@
             <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
             <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
 
-            <form>
-                <div class="form-group">
-                    <label for="name">Website Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="name"
-                           placeholder="My Website"
-                           value="My Website"
-                           ng-model="model.name">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control"
-                              id="description"
-                              rows="5"
-                              placeholder="My website's description..."
-                              ng-model="model.description">{{model.description}}</textarea>
-                </div>
-            </form>
-            <a class="btn-block btn btn-danger" ng-click="model.deleteWebsite()">Delete</a>
+            <div ng-hide="!model.websiteInfo">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Website Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               placeholder="My Website"
+                               value="My Website"
+                               ng-model="model.websiteInfo.name">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control"
+                                  id="description"
+                                  rows="5"
+                                  placeholder="My website's description..."
+                                  ng-model="model.websiteInfo.description">{{model.websiteInfo.description}}</textarea>
+                    </div>
+                </form>
+                <a class="btn-block btn btn-danger" ng-click="model.deleteWebsite()">Delete</a>
+            </div>
         </div>
     </div>
 
+    <!-- TODO Refactor into separate template -->
     <!-- Footer bar -->
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid navbar-header">

@@ -6,7 +6,7 @@
     function userService() {
         var lastId = "456";
         var users = [
-            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
+            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", emailAddress:"alice@wonderland.com"},
             {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
             {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
@@ -38,7 +38,8 @@
                         username: user.username,
                         password: user.password,
                         firstName: user.firstName,
-                        lastName: user.lastName
+                        lastName: user.lastName,
+                        emailAddress: user.emailAddress
                     };
                     users.push(newUser);
                     response.user = newUser;
@@ -135,13 +136,15 @@
             } else {
                 var findUserRs = this.findUserByUsername(user.username);
 
-                if (!findUserRs.user || user._id !== userId) {
+                // check if username is available or if its the same user
+                if (!findUserRs.user || user._id === userId) {
                     for (var i = 0; i < users.length && !foundFlag; i++) {
                         if (users[i]._id === userId) {
                             foundFlag = true;
                             users[i].username = user.username;
                             users[i].firstName = user.firstName;
                             users[i].lastName = user.lastName;
+                            users[i].emailAddress = user.emailAddress;
                         }
                     }
 

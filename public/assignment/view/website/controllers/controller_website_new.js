@@ -18,6 +18,7 @@
         })();
 
         function saveWebsite(websiteInfo) {
+            websiteInfo = websiteInfo || {};
             var createWebsiteRs = websiteService.createWebsite(uid, websiteInfo);
 
             if (createWebsiteRs.msg){

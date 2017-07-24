@@ -8,6 +8,7 @@
             uid, wid, pid, wgid;
 
         vm.deleteWidget = deleteWidget;
+        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
         vm.saveWidget = saveWidget;
 
         (function inti(){
@@ -28,10 +29,7 @@
             if (findWidgetRs.msg) {
                 vm.errorMsg = findWidgetRs.msg;
             } else {
-                vm.text = findWidgetRs.widget.text;
-                vm.url = findWidgetRs.widget.url;
-                vm.width = findWidgetRs.widget.width;
-                vm.widgetType = findWidgetRs.widget.widgetType;
+                vm.widgetInfo = findWidgetRs.widget;
             }
         })();
 
@@ -43,6 +41,23 @@
             } else {
                 $location.url("/user/" + uid + "/website/" + wid + "/page/" + pid + "/widget");
             }
+        }
+
+        function getWidgetTemplateUrl(widgetType) {
+            var widgetTemplateUrl = "view/widget/templates/template_widget_edit_";
+            switch(widgetType){
+                case "HEADING":
+                    widgetTemplateUrl += "header";
+                    break;
+                case "IMAGE":
+                    widgetTemplateUrl += "image";
+                    break;
+                case "YOUTUBE":
+                    widgetTemplateUrl += "youtube";
+                    break;
+            }
+            widgetTemplateUrl += ".html";
+            return widgetTemplateUrl;
         }
 
         function saveWidget(widgetInfo) {

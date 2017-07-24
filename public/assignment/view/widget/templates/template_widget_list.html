@@ -14,16 +14,8 @@
     <!-- Whitespace problems when floating due to unequal heights seem to only be resolvable with JS -->
     <div class="container-fluid">
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADING">
-                    <ng-include src="'view/widget/templates/template_widget_list_header.html'">
-                </div>
-                <div ng-switch-when="IMAGE">
-                    <ng-include src="'view/widget/templates/template_widget_list_image.html'">
-                </div>
-                <div ng-switch-when="YOUTUBE">
-                    <ng-include src="'view/widget/templates/template_widget_list_youtube.html'">
-                </div>
+            <li class="list-group-item" ng-repeat="widget in model.widgets">
+                <div ng-include="model.getWidgetTemplateUrl(widget.widgetType)"></div>
                 <a class="col-xs-push-12"
                    href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                     <i class="glyphicon glyphicon-cog"></i>

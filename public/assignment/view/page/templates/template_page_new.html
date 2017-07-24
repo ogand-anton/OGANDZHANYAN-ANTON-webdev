@@ -7,7 +7,7 @@
                 <span>Pages</span>
             </a>
             <div class="aoa-navbar-page-name">New Page</div>
-            <a class="aoa-navbar-right" ng-click="model.savePage(model)">
+            <a class="aoa-navbar-right" ng-click="model.savePage(pageInfo)">
                 <span>Save</span>
                 <i class="glyphicon glyphicon-floppy-save"></i>
             </a>
@@ -15,6 +15,7 @@
     </nav>
 
     <div class="container-fluid">
+        <!-- Page List Sidebar -->
         <!-- Page List Sidebar -->
         <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
             <label>Your Pages</label>
@@ -39,7 +40,7 @@
                            class="form-control"
                            id="name"
                            placeholder="Page Name"
-                           ng-model="model.name">
+                           ng-model="pageInfo.name">
                 </div>
                 <div class="form-group">
                     <label for="title">Page Title</label>
@@ -47,7 +48,7 @@
                            class="form-control"
                            id="title"
                            placeholder="Page Title"
-                           ng-model="model.description">
+                           ng-model="pageInfo.description">
                 </div>
             </form>
         </div>

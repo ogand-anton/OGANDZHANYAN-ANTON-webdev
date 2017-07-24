@@ -7,7 +7,7 @@
                 <span>Pages</span>
             </a>
             <div class="aoa-navbar-page-name">Edit Page</div>
-            <a class="aoa-navbar-right" ng-click="model.savePage(model)">
+            <a class="aoa-navbar-right" ng-click="model.savePage(model.pageInfo)">
                 <span>Save</span>
                 <i class="glyphicon glyphicon-floppy-save"></i>
             </a>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <!-- Page List Sidebar -->
         <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
-            <label>Your Websites</label>
+            <label>Your Pages</label>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="page in model.pages">
                     <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
@@ -33,25 +33,27 @@
             <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
             <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
 
-            <form>
-                <div class="form-group">
-                    <label for="name">Page Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="name"
-                           placeholder="Page Name"
-                           ng-model="model.name">
-                </div>
-                <div class="form-group">
-                    <label for="title">Page Title</label>
-                    <input type="text"
-                           class="form-control"
-                           id="title"
-                           placeholder="Page Title"
-                           ng-model="model.description">
-                </div>
-            </form>
-            <a class="btn-block btn btn-danger" ng-click="model.deletePage()">Delete</a>
+            <div ng-hide="!model.pageInfo">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Page Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               placeholder="Page Name"
+                               ng-model="model.pageInfo.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Page Title</label>
+                        <input type="text"
+                               class="form-control"
+                               id="title"
+                               placeholder="Page Title"
+                               ng-model="model.pageInfo.description">
+                    </div>
+                </form>
+                <a class="btn-block btn btn-danger" ng-click="model.deletePage()">Delete</a>
+            </div>
         </div>
     </div>
 

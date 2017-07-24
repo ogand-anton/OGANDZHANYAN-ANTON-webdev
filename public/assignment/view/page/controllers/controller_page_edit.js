@@ -27,8 +27,7 @@
             if (findPageRs.msg) {
                 vm.errorMsg = findPageRs.msg;
             } else {
-                vm.name = findPageRs.page.name;
-                vm.description = findPageRs.page.description;
+                vm.pageInfo = findPageRs.page;
             }
         })();
 

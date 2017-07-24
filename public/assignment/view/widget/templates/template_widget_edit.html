@@ -8,7 +8,7 @@
                 <span>Widgets</span>
             </a>
             <div class="aoa-navbar-page-name">Edit Widget</div>
-            <a class="aoa-navbar-right" ng-click="model.saveWidget(model)">
+            <a class="aoa-navbar-right" ng-click="model.saveWidget(model.widgetInfo)">
                 <span>Save</span>
                 <i class="glyphicon glyphicon-floppy-save"></i>
             </a>
@@ -21,19 +21,10 @@
             <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
             <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
 
-            <div ng-switch="model.widgetType">
-                <div ng-switch-when="HEADING">
-                    <ng-include src="'view/widget/templates/template_widget_edit_header.html'">
-                </div>
-                <div ng-switch-when="IMAGE">
-                    <ng-include src="'view/widget/templates/template_widget_edit_image.html'">
-                </div>
-                <div ng-switch-when="YOUTUBE">
-                    <ng-include src="'view/widget/templates/template_widget_edit_youtube.html'">
-                </div>
+            <div ng-hide="!model.widgetInfo">
+                <div ng-include="model.getWidgetTemplateUrl(model.widgetInfo.widgetType)"></div>
+                <a class="btn-block btn btn-danger" ng-click="model.deleteWidget()">Delete</a>
             </div>
-
-            <a class="btn-block btn btn-danger" ng-click="model.deleteWidget()">Delete</a>
         </div>
     </div>
 

@@ -8,6 +8,8 @@
             uid,
             wid;
 
+        vm.getPageListGroupTemplateUrl = getPageListGroupTemplateUrl;
+
         (function init(){
             uid = $routeParams["uid"];
             vm.uid = uid;
@@ -18,5 +20,9 @@
             var findPagesRs = pageService.findPagesByWebsiteId(wid);
             vm.pages = findPagesRs.pages;
         })();
+
+        function getPageListGroupTemplateUrl() {
+            return "view/page/templates/template_page_list_group.html";
+        }
     }
 })();

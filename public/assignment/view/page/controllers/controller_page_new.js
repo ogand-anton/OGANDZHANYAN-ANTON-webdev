@@ -8,6 +8,7 @@
             uid,
             wid;
 
+        vm.getPageListGroupTemplateUrl = getPageListGroupTemplateUrl;
         vm.savePage = savePage;
 
         (function init() {
@@ -20,6 +21,10 @@
             var findPagesRs = pageService.findPagesByWebsiteId(wid);
             vm.pages = findPagesRs.pages;
         })();
+
+        function getPageListGroupTemplateUrl() {
+            return "view/page/templates/template_page_list_group.html";
+        }
 
         function savePage(pageInfo) {
             pageInfo = pageInfo || {};

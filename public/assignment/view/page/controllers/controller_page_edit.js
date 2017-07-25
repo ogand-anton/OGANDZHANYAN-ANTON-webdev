@@ -8,6 +8,7 @@
             uid, wid, pid;
 
         vm.deletePage = deletePage;
+        vm.getPageListGroupTemplateUrl = getPageListGroupTemplateUrl;
         vm.savePage = savePage;
 
         (function init(){
@@ -39,6 +40,10 @@
             } else {
                 $location.url("/user/" + uid + "/website/" + wid + "/page");
             }
+        }
+
+        function getPageListGroupTemplateUrl() {
+            return "view/page/templates/template_page_list_group.html";
         }
 
         function savePage(pageInfo) {

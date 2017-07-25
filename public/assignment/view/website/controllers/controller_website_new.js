@@ -7,6 +7,7 @@
         var vm = this,
             uid;
 
+        vm.getWebsiteListGroupTemplateUrl = getWebsiteListGroupTemplateUrl;
         vm.saveWebsite = saveWebsite;
 
         (function init() {
@@ -16,6 +17,10 @@
             var findWebsitesRs = websiteService.findWebsitesByUser(uid);
             vm.websites = findWebsitesRs.websites;
         })();
+
+        function getWebsiteListGroupTemplateUrl() {
+            return "view/website/templates/template_website_list_group.html";
+        }
 
         function saveWebsite(websiteInfo) {
             websiteInfo = websiteInfo || {};

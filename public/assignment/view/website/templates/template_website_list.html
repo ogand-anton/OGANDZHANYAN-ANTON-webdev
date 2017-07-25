@@ -10,18 +10,8 @@
         </div>
     </nav>
 
-    <!-- TODO Refactor out into separate template file to reuse on edit & new -->
     <!-- Website List -->
-    <div class="container-fluid">
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="website in model.websites">
-                <a href="#!/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
-                <a class="pull-right" href="#!/user/{{model.uid}}/website/{{website._id}}">
-                    <i class="glyphicon glyphicon-cog"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <div class="container-fluid" ng-include="model.getWebsiteListGroupTemplateUrl()"></div>
 
     <!-- Footer bar -->
     <nav class="navbar navbar-default navbar-fixed-bottom">

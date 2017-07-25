@@ -18,14 +18,7 @@
         <!-- Page List Sidebar -->
         <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
             <label>Your Pages</label>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="page in model.pages">
-                    <a href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
-                    <a class="pull-right" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
-                        <i class="glyphicon glyphicon-cog"></i>
-                    </a>
-                </li>
-            </ul>
+            <div ng-include="model.getPageListGroupTemplateUrl()"></div>
         </div>
 
         <!-- Edit Page Options -->

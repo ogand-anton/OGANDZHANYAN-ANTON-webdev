@@ -9,6 +9,7 @@
             wid;
 
         vm.deleteWebsite = deleteWebsite;
+        vm.getWebsiteListGroupTemplateUrl = getWebsiteListGroupTemplateUrl;
         vm.saveWebsite = saveWebsite;
 
         (function init(){
@@ -39,6 +40,10 @@
             }
         }
 
+        function getWebsiteListGroupTemplateUrl() {
+            return "view/website/templates/template_website_list_group.html";
+        }
+        
         function saveWebsite(websiteInfo) {
             var updateWebsiteRs = websiteService.updateWebsite(wid, websiteInfo);
 

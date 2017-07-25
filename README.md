@@ -12,7 +12,7 @@ Links:
 - Project app:  https://poetryparadiseherokuapp.com
 - Assignment 1: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v1.0
 - Assignment 2: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v2.0
-- Assignment 3: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v3.0
+- Assignment 3: https://github.com/ogand-anton/OGANDZHANYAN-ANTON-webdev/releases/tag/v3.1
 - Assignment 4: (None, yet...)
 - Assignment 5: (None, yet...)
 - Assignment 6: (None, yet...)

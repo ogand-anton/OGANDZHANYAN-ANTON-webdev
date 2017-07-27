@@ -8,8 +8,6 @@
 
         vm.login = login;
 
-        console.log("Hello from login");
-
         function login(loginInfo) {
             userService
                 .findUserByCredentials(loginInfo)

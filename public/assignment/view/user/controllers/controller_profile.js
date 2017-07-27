@@ -13,26 +13,24 @@
             uid = $routeParams["uid"];
             vm.uid = uid;
 
-            var findUserRs = userService.findUserById(uid);
+            // TODO this shouldn't be an error msg
+            vm.errorMsg = "Loading...";
 
-            if (!findUserRs.user) {
-                vm.errorMsg = "User does not exist"
-            }
-            else {
-                vm.profileInfo = findUserRs.user;
-            }
+            userService
+                .findUserById(uid)
+                .then(function(res){
+                    vm.errorMsg = res.msg;
+                    vm.profileInfo = res.user;
+                });
         })();
 
         function saveUser(profileInfo){
-            var updateUserRs = userService.updateUser(uid, profileInfo);
-
-            if (updateUserRs.msg) {
-                vm.errorMsg = updateUserRs.msg;
-                vm.successMsg = null;
-            } else {
-                vm.successMsg = "Profile Updated";
-                vm.errorMsg = null;
-            }
+            userService
+                .updateUser(uid, profileInfo)
+                .then(function(res){
+                    vm.errorMsg = res.msg;
+                    vm.successMsg = res.msg ? null : "Profile Updated";
+                });
         }
     }
 })();

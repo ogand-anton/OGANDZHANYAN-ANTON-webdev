@@ -9,13 +9,15 @@
         vm.registerUser = registerUser;
 
         function registerUser(userInfo) {
-            var response = userService.createUser(userInfo);
-
-            if (response.msg) {
-                vm.errorMsg = response.msg;
-            } else {
-                $location.url("/user/" + response.user._id)
-            }
+            userService
+                .createUser(userInfo)
+                .then(function(res){
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url("/user/" + res.user._id);
+                    }
+            });
         }
     }
 })();

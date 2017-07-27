@@ -8,17 +8,19 @@
 
         vm.login = login;
 
+        console.log("Hello from login");
+
         function login(loginInfo) {
-            loginInfo = loginInfo || {};
-
-            var response = userService.findUserByCredentials(loginInfo.username, loginInfo.password);
-
-            if (response.msg) {
-                vm.errorMsg = response.msg;
-            }
-            else {
-                $location.url("/user/" + response.user._id);
-            }
+            userService
+                .findUserByCredentials(loginInfo)
+                .then(function(res){
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    }
+                    else {
+                        $location.url("/user/" + res.user._id);
+                    }
+                });
         }
     }
 })();

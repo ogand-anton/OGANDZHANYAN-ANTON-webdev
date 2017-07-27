@@ -3,15 +3,7 @@
         .module("WamApp")
         .factory("userService", userService);
 
-    function userService() {
-        var lastId = "456";
-        var users = [
-            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", emailAddress:"alice@wonderland.com"},
-            {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-            {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-        ];
-
+    function userService($http) {
         return {
             createUser: createUser,
             deleteUser: deleteUser,
@@ -22,141 +14,61 @@
         };
 
         function createUser(user) {
-            var response = {};
-
-            if (!user || !user.username || !user.password) {
-                response.msg = "User must have a username and a password";
-            } else if (user.password !== user.verifyPassword) {
-                response.msg = "Passwords do not match";
-            } else {
-                var findUserRs = this.findUserByUsername(user.username);
-
-                if (!findUserRs.user) {
-                    lastId += "1"; // will keep appending one, DB will take care of this
-                    var newUser = {
-                        _id: lastId,
-                        username: user.username,
-                        password: user.password,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        emailAddress: user.emailAddress
-                    };
-                    users.push(newUser);
-                    response.user = newUser;
-                } else {
-                    response.msg = "Username not available";
-                }
-            }
-
-            return response;
+            return $http({
+                url: "/api/user",
+                method: "POST",
+                params: user
+            }).then(function(res){
+                return res.data;
+            });
         }
 
         function deleteUser(userId) {
-            var response = {},
-                foundFlag = false;
-
-            for (var i = 0; i < users.length && !foundFlag; i++) {
-                if (users[i]._id === userId) {
-                    foundFlag = true;
-                    users.splice(0, 1);
-                }
-            }
-
-            if (!foundFlag) {
-                response.msg = "User with id '" + userId + "' not found";
-            }
-
-            return response;
+            return $http({
+                url: "/api/user/" + userId,
+                method: "DELETE"
+            }).then(function(res){
+                return res.data;
+            });
         }
 
-        function findUserByCredentials(username, password) {
-            var response = {},
-                foundFlag = false;
-
-            for (var i = 0; i < users.length && !foundFlag; i++) {
-                if (users[i].username === username) {
-                    if (users[i].password === password) {
-                        response.user = users[i];
-                        foundFlag = true;
-                    } else {
-                        response.msg = "Invalid password";
-                    }
-                }
-            }
-
-            if (!foundFlag && !response.msg) {
-                response.msg = "Username not found";
-            }
-
-            return response;
+        function findUserByCredentials(loginCredentials) {
+            return $http({
+                url: "/api/login",
+                method: "GET",
+                params: loginCredentials
+            }).then(function(res){
+                return res.data;
+            });
         }
 
         function findUserById(userId) {
-            var response = {},
-                foundFlag = false;
-
-            for (var i = 0; i < users.length && !foundFlag; i++) {
-                if (users[i]._id === userId) {
-                    response.user = users[i];
-                    foundFlag = true;
-                }
-            }
-
-            if (!foundFlag) {
-                response.msg = "User with id '" + userId + "' not found";
-            }
-
-            return response;
+            return $http({
+                url: "/api/user/" + userId,
+                method: "GET"
+            }).then(function(res){
+                return res.data;
+            });
         }
 
         function findUserByUsername(username) {
-            var response = {},
-                foundFlag = false;
-
-            for (var i = 0; i < users.length && !foundFlag; i++) {
-                if (users[i].username === username) {
-                    response.user = users[i];
-                    foundFlag = true;
-                }
-            }
-
-            if (!foundFlag) {
-                response.msg = "User with username '" + username + "' not found";
-            }
-
-            return response;
+            return $http({
+                url: "/api/user",
+                method: "GET",
+                params: {username: username}
+            }).then(function(res){
+                return res.data;
+            });
         }
 
         function updateUser(userId, user) {
-            var response = {},
-                foundFlag = false;
-
-            if (!user || !user.username) {
-                response.msg = "Cannot clear username";
-            } else {
-                var findUserRs = this.findUserByUsername(user.username);
-
-                // check if username is available or if its the same user
-                if (!findUserRs.user || user._id === userId) {
-                    for (var i = 0; i < users.length && !foundFlag; i++) {
-                        if (users[i]._id === userId) {
-                            foundFlag = true;
-                            users[i].username = user.username;
-                            users[i].firstName = user.firstName;
-                            users[i].lastName = user.lastName;
-                            users[i].emailAddress = user.emailAddress;
-                        }
-                    }
-
-                    if (!foundFlag) {
-                        response.msg = "User with id '" + userId + "' not found";
-                    }
-                } else {
-                    response.msg = "Username unavailable";
-                }
-            }
-
-            return response;
+            return $http({
+                url: "/api/user/" + userId,
+                method: "PUT",
+                params: user
+            }).then(function(res){
+                return res.data;
+            });
         }
     }
 })();

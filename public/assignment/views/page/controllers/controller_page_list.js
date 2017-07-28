@@ -25,7 +25,7 @@
         })();
 
         function getPageListGroupTemplateUrl() {
-            return "view/page/templates/template_page_list_group.html";
+            return "views/page/templates/template_page_list_group.html";
         }
     }
 })();

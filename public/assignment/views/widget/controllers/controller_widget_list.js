@@ -20,12 +20,15 @@
             pid = $routeParams["pid"];
             vm.pid = pid;
 
-            var findWidgetsRs = widgetService.findWidgetsByPageId(pid);
-            vm.widgets = findWidgetsRs.widgets;
+            widgetService
+                .findWidgetsByPageId(pid)
+                .then(function(res){
+                    vm.widgets = res.widgets;
+                })
         })();
 
         function getWidgetTemplateUrl(widgetType) {
-            var widgetTemplateUrl = "view/widget/templates/template_widget_list_";
+            var widgetTemplateUrl = "views/widget/templates/template_widget_list_";
             switch(widgetType){
                 case "HEADING":
                     widgetTemplateUrl += "header";

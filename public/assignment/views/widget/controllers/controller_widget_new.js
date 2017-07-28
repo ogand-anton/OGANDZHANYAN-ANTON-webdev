@@ -29,18 +29,20 @@
         })();
 
         function createWidget(widget) {
-            var createWidgetRs = widgetService.createWidget(pid, widget);
-
-            if (createWidgetRs.msg) {
-                vm.errorMsg = createWidgetRs.msg;
-            } else {
-                $location.url(
-                    "/user/" + uid +
-                    "/website/" + wid +
-                    "/page/" + pid +
-                    "/widget/" + createWidgetRs.widget._id
-                );
-            }
+            widgetService
+                .createWidget(pid, widget)
+                .then(function(res){
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url(
+                            "/user/" + uid +
+                            "/website/" + wid +
+                            "/page/" + pid +
+                            "/widget/" + res.widget._id
+                        );
+                    }
+                });
         }
     }
 })();

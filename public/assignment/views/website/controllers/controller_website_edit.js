@@ -42,7 +42,7 @@
         }
 
         function getWebsiteListGroupTemplateUrl() {
-            return "view/website/templates/template_website_list_group.html";
+            return "views/website/templates/template_website_list_group.html";
         }
 
         function saveWebsite(websiteInfo) {

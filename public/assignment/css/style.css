@@ -14,7 +14,8 @@
 /*    Misc. Components  */
 /************************/
 
-a.col-xs-push-12 {
+a.col-xs-push-12,
+a.col-xs-pull-12 {
     position: sticky;
 }
 

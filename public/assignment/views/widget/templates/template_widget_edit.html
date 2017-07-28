@@ -22,7 +22,7 @@
             <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
 
             <div ng-hide="!model.widgetInfo">
-                <div ng-include="model.getWidgetTemplateUrl(model.widgetInfo.widgetType)"></div>
+                <div ng-include="model.widgetTemplateUrl"></div>
                 <a class="btn-block btn btn-danger" ng-click="model.deleteWidget()">Delete</a>
             </div>
         </div>

@@ -1,37 +1,35 @@
-<div>
-    <div ng-include="model.templates.navHeader"></div>
+<div ng-include="model.templates.navHeader"></div>
 
-    <div class="container-fluid">
-        <!-- Page List Sidebar -->
-        <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
-            <label>Your Pages</label>
-            <div ng-include="model.templates.pageListGroup"></div>
-        </div>
-
-        <!-- Edit Page Options -->
-        <div class="col-xs-12 col-md-8 aoa-padding-lr-none">
-            <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
-
-            <form>
-                <div class="form-group">
-                    <label for="name">Page Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="name"
-                           placeholder="Page Name"
-                           ng-model="model.pageInfo.name">
-                </div>
-                <div class="form-group">
-                    <label for="title">Page Title</label>
-                    <input type="text"
-                           class="form-control"
-                           id="title"
-                           placeholder="Page Title"
-                           ng-model="model.pageInfo.description">
-                </div>
-            </form>
-        </div>
+<div class="container-fluid">
+    <!-- Page List Sidebar -->
+    <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
+        <label>Your Pages</label>
+        <div ng-include="model.templates.pageListGroup"></div>
     </div>
 
-    <div ng-include="model.templates.navFooter"></div>
+    <!-- Edit Page Options -->
+    <div class="col-xs-12 col-md-8 aoa-padding-lr-none">
+        <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
+
+        <form>
+            <div class="form-group">
+                <label for="name">Page Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Page Name"
+                       ng-model="model.pageInfo.name">
+            </div>
+            <div class="form-group">
+                <label for="title">Page Title</label>
+                <input type="text"
+                       class="form-control"
+                       id="title"
+                       placeholder="Page Title"
+                       ng-model="model.pageInfo.description">
+            </div>
+        </form>
+    </div>
 </div>
+
+<div ng-include="model.templates.navFooter"></div>

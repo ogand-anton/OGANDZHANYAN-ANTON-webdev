@@ -1,44 +1,42 @@
-<div>
-    <div ng-include="model.templates.navHeader"></div>
+<div ng-include="model.templates.navHeader"></div>
 
-    <!-- TODO Make separate collapsible sidebar template -->
-    <!-- TODO Maybe also an outer nav template for header and footer -->
-    <div class="container-fluid">
-        <!-- Website List Sidebar -->
-        <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
-            <label>Your Websites</label>
-            <div class="container-fluid aoa-padding-left-none" ng-include="model.templates.websiteListGroup"></div>
-        </div>
-
-        <!-- Edit Website Options -->
-        <div class="col-xs-12 col-md-8 aoa-padding-lr-none">
-            <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
-            <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
-
-            <div ng-hide="!model.websiteInfo">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Website Name</label>
-                        <input type="text"
-                               class="form-control"
-                               id="name"
-                               placeholder="My Website"
-                               value="My Website"
-                               ng-model="model.websiteInfo.name">
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control"
-                                  id="description"
-                                  rows="5"
-                                  placeholder="My website's description..."
-                                  ng-model="model.websiteInfo.description">{{model.websiteInfo.description}}</textarea>
-                    </div>
-                </form>
-                <a class="btn-block btn btn-danger" ng-click="model.deleteWebsite()">Delete</a>
-            </div>
-        </div>
+<!-- TODO Make separate collapsible sidebar template -->
+<!-- TODO Maybe also an outer nav template for header and footer -->
+<div class="container-fluid">
+    <!-- Website List Sidebar -->
+    <div class="hidden-xs hidden-sm col-md-4 aoa-padding-left-none">
+        <label>Your Websites</label>
+        <div class="container-fluid aoa-padding-left-none" ng-include="model.templates.websiteListGroup"></div>
     </div>
 
-    <div ng-include="model.templates.navFooter"></div>
+    <!-- Edit Website Options -->
+    <div class="col-xs-12 col-md-8 aoa-padding-lr-none">
+        <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
+        <div class="alert-success" ng-show="model.successMsg">{{model.successMsg}}</div>
+
+        <div ng-hide="!model.websiteInfo">
+            <form>
+                <div class="form-group">
+                    <label for="name">Website Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="My Website"
+                           value="My Website"
+                           ng-model="model.websiteInfo.name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control"
+                              id="description"
+                              rows="5"
+                              placeholder="My website's description..."
+                              ng-model="model.websiteInfo.description">{{model.websiteInfo.description}}</textarea>
+                </div>
+            </form>
+            <a class="btn-block btn btn-danger" ng-click="model.deleteWebsite()">Delete</a>
+        </div>
+    </div>
 </div>
+
+<div ng-include="model.templates.navFooter"></div>

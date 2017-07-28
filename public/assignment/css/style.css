@@ -81,7 +81,8 @@ a:hover{
 
 body,
 a,
-input {
+input,
+textarea {
     font-size: 18px !important;
 }
 

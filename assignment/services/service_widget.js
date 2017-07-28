@@ -24,6 +24,7 @@ module.exports = function (app) {
                 _id: "678",
                 widgetType: "YOUTUBE",
                 pageId: "321",
+                height: 350,
                 width: "100%",
                 url: "https://www.youtube.com/embed/uiz80CuDN8Y"
             },
@@ -31,6 +32,7 @@ module.exports = function (app) {
                 _id: "901",
                 widgetType: "YOUTUBE",
                 pageId: "998",
+                height: 350,
                 width: "100%",
                 url: "https://www.youtube.com/embed/uiz80CuDN8Y"
             }
@@ -51,6 +53,7 @@ module.exports = function (app) {
                 name: req.query.name,
                 text: req.query.text,
                 size: parseInt(req.query.size),
+                height: parseInt(req.query.height),
                 width: req.query.width,
                 url: req.query.url
             };
@@ -118,6 +121,7 @@ module.exports = function (app) {
                 text: req.query.text,
                 size: parseInt(req.query.size),
                 width: req.query.width,
+                height: parseInt(req.query.height),
                 url: req.query.url
             };
 
@@ -127,6 +131,7 @@ module.exports = function (app) {
             widget.name = newWidgetInfo.name;
             widget.text = newWidgetInfo.text;
             widget.size = Math.max(Math.min(newWidgetInfo.size, 5), 1) || widget.size;
+            widget.height = newWidgetInfo.height;
             widget.width = newWidgetInfo.width;
             widget.url = newWidgetInfo.url;
         } else {

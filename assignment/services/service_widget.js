@@ -50,7 +50,7 @@ module.exports = function (app) {
                 widgetType: req.query.widgetType,
                 name: req.query.name,
                 text: req.query.text,
-                size: req.query.size,
+                size: parseInt(req.query.size),
                 width: req.query.width,
                 url: req.query.url
             };
@@ -116,7 +116,7 @@ module.exports = function (app) {
             newWidgetInfo = {
                 name: req.query.name,
                 text: req.query.text,
-                size: req.query.size,
+                size: parseInt(req.query.size),
                 width: req.query.width,
                 url: req.query.url
             };
@@ -126,7 +126,7 @@ module.exports = function (app) {
         if (widget) {
             widget.name = newWidgetInfo.name;
             widget.text = newWidgetInfo.text;
-            widget.size = newWidgetInfo.size;
+            widget.size = Math.max(Math.min(newWidgetInfo.size, 5), 1) || widget.size;
             widget.width = newWidgetInfo.width;
             widget.url = newWidgetInfo.url;
         } else {

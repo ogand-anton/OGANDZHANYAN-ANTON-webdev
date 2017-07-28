@@ -26,9 +26,8 @@
         }
 
         function saveWebsite(websiteInfo) {
-            websiteInfo = websiteInfo || {};
             websiteService
-                .createWebsite(uid, websiteInfo)
+                .createWebsite(uid, websiteInfo || {})
                 .then(function (res) {
                     if (res.msg) {
                         vm.errorMsg = res.msg;

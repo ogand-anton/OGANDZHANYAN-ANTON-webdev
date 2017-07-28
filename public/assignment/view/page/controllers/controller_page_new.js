@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module("WamApp")
         .controller("pageNewController", pageNewController);
@@ -18,8 +18,11 @@
             wid = $routeParams["wid"];
             vm.wid = wid;
 
-            var findPagesRs = pageService.findPagesByWebsiteId(wid);
-            vm.pages = findPagesRs.pages;
+            pageService
+                .findPagesByWebsiteId(wid)
+                .then(function (res) {
+                    vm.pages = res.pages;
+                });
         })();
 
         function getPageListGroupTemplateUrl() {
@@ -27,14 +30,15 @@
         }
 
         function savePage(pageInfo) {
-            pageInfo = pageInfo || {};
-            var createPageRs = pageService.createPage(wid, pageInfo);
-
-            if (createPageRs.msg){
-                vm.errorMsg = createPageRs.msg;
-            } else {
-                $location.url("/user/" + uid + "/website/" + wid + "/page");
-            }
+            pageService
+                .createPage(wid, pageInfo || {})
+                .then(function (res) {
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url("/user/" + uid + "/website/" + wid + "/page");
+                    }
+                });
         }
     }
 })();

@@ -17,8 +17,11 @@
             wid = $routeParams["wid"];
             vm.wid = wid;
 
-            var findPagesRs = pageService.findPagesByWebsiteId(wid);
-            vm.pages = findPagesRs.pages;
+            pageService
+                .findPagesByWebsiteId(wid)
+                .then(function(res){
+                    vm.pages = res.pages;
+                });
         })();
 
         function getPageListGroupTemplateUrl() {

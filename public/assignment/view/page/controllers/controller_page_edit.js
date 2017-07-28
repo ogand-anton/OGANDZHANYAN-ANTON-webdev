@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module("WamApp")
         .controller("pageEditController", pageEditController);
@@ -11,7 +11,7 @@
         vm.getPageListGroupTemplateUrl = getPageListGroupTemplateUrl;
         vm.savePage = savePage;
 
-        (function init(){
+        (function init() {
             uid = $routeParams["uid"];
             vm.uid = uid;
 
@@ -21,25 +21,26 @@
             pid = $routeParams["pid"];
             vm.pid = pid;
 
-            var findPagesRs = pageService.findPagesByWebsiteId(wid);
-            vm.pages = findPagesRs.pages;
+            _getPageList();
 
-            var findPageRs = pageService.findPageById(pid);
-            if (findPageRs.msg) {
-                vm.errorMsg = findPageRs.msg;
-            } else {
-                vm.pageInfo = findPageRs.page;
-            }
+            pageService
+                .findPageById(pid)
+                .then(function(res){
+                    vm.errorMsg = res.msg;
+                    vm.pageInfo = res.page;
+            })
         })();
 
         function deletePage() {
-            var deletePageRs = pageService.deletePage(pid);
-
-            if (deletePageRs.msg) {
-                vm.errorMsg = deletePageRs.msg;
-            } else {
-                $location.url("/user/" + uid + "/website/" + wid + "/page");
-            }
+            pageService
+                .deletePage(pid)
+                .then(function(res){
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url("/user/" + uid + "/website/" + wid + "/page");
+                    }
+                });
         }
 
         function getPageListGroupTemplateUrl() {
@@ -47,15 +48,22 @@
         }
 
         function savePage(pageInfo) {
-            var updatePageRs = pageService.updatePage(pid, pageInfo);
+           pageService
+               .updatePage(pid, pageInfo)
+               .then(function(res){
+                   vm.errorMsg = res.msg;
+                   vm.successMsg = res.msg ? null : "Page Updated";
 
-            if (updatePageRs.msg){
-                vm.errorMsg = updatePageRs.msg;
-                vm.successMsg = null;
-            } else {
-                vm.errorMsg = null;
-                vm.successMsg = "Page updated";
-            }
+                   _getPageList();
+               });
+        }
+
+        function _getPageList() {
+            pageService
+                .findPagesByWebsiteId(wid)
+                .then(function (res) {
+                    vm.pages = res.pages;
+                });
         }
     }
 })();

@@ -19,11 +19,7 @@
             wid = $routeParams["wid"];
             vm.wid = wid;
 
-            websiteService
-                .findWebsitesByUser(uid)
-                .then(function (res) {
-                    vm.websites = res.websites;
-                });
+            _getWebsiteList();
 
             websiteService
                 .findWebsiteById(wid)
@@ -55,6 +51,16 @@
                 .then(function (res) {
                     vm.errorMsg = res.msg;
                     vm.successMsg = res.msg ? null : "Website updated";
+
+                    _getWebsiteList();
+                });
+        }
+
+        function _getWebsiteList(){
+            websiteService
+                .findWebsitesByUser(uid)
+                .then(function (res) {
+                    vm.websites = res.websites;
                 });
         }
     }

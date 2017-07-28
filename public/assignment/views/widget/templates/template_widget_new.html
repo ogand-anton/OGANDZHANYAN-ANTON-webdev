@@ -1,15 +1,5 @@
 <div>
-    <!-- Nav bar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid navbar-header ">
-            <a class="aoa-navbar-left"
-               href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
-                <i class="glyphicon glyphicon-triangle-left"></i>
-                <span>Widgets</span>
-            </a>
-            <div class="aoa-navbar-page-name">New Widget</div>
-        </div>
-    </nav>
+    <div ng-include="model.templates.navHeader"></div>
 
     <!-- Widget Options -->
     <div class="container-fluid">
@@ -21,15 +11,5 @@
         </ul>
     </div>
 
-    <!-- Footer bar -->
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid navbar-header ">
-            <a class="aoa-navbar-item col-xs-6" href="../../user/templates/template_profile.html">
-                <i class="glyphicon glyphicon-user"></i>
-            </a>
-            <a class="aoa-navbar-item col-xs-6" href="template_widget_new.html">
-                <i class="glyphicon glyphicon-plus"></i>
-            </a>
-        </div>
-    </nav>
+    <div ng-include="model.templates.navFooter"></div>
 </div>

@@ -7,12 +7,26 @@
         var vm = this,
             uid;
 
+        vm.saveWebsite = saveWebsite;
+
         (function init() {
             _parseRouteParams();
             _fetchTemplates();
             _initHeaderFooter();
             _loadContent();
         })();
+
+        function saveWebsite() {
+            websiteService
+                .createWebsite(uid, vm.websiteInfo)
+                .then(function (res) {
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url("/user/" + uid + "/website");
+                    }
+                });
+        }
 
         function _fetchTemplates() {
             vm.templates = Object.assign(
@@ -26,7 +40,7 @@
                 leftLink: {href: "#!/user/" + uid + "/website", iconClass: "glyphicon-triangle-left", name: "Websites"},
                 name: "New Website",
                 rightLink: {
-                    clickCb: _saveWebsite,
+                    clickCb: saveWebsite,
                     href: "javascript:void(0)",
                     iconClass: "glyphicon-floppy-save",
                     name: "Save"
@@ -51,18 +65,6 @@
         function _parseRouteParams() {
             uid = $routeParams["uid"];
             vm.uid = uid;
-        }
-
-        function _saveWebsite() {
-            websiteService
-                .createWebsite(uid, vm.websiteInfo)
-                .then(function (res) {
-                    if (res.msg) {
-                        vm.errorMsg = res.msg;
-                    } else {
-                        $location.url("/user/" + uid + "/website");
-                    }
-                });
         }
     }
 })();

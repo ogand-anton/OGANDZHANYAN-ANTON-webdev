@@ -4,11 +4,16 @@
         .factory("pageService", pageService);
 
     function pageService($http) {
+        var templates = {
+            pageListGroup: "views/page/templates/template_page_list_group.html"
+        };
+
         return {
             createPage: createPage,
             deletePage: deletePage,
             findPageById: findPageById,
             findPagesByWebsiteId: findPagesByWebsiteId,
+            getTemplates: getTemplates,
             updatePage: updatePage
         };
 
@@ -47,6 +52,10 @@
             }).then(function (res) {
                 return res.data;
             });
+        }
+
+        function getTemplates() {
+            return templates;
         }
 
         function updatePage(pageId, page) {

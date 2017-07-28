@@ -9,6 +9,7 @@
             wid;
 
         vm.deleteWebsite = deleteWebsite;
+        vm.saveWebsite = saveWebsite;
 
         (function init() {
             _parseRouteParams();
@@ -26,6 +27,17 @@
                     } else {
                         $location.url("/user/" + uid + "/website");
                     }
+                });
+        }
+
+        function saveWebsite() {
+            websiteService
+                .updateWebsite(wid, vm.websiteInfo)
+                .then(function (res) {
+                    vm.errorMsg = res.msg;
+                    vm.successMsg = res.msg ? null : "Website updated";
+
+                    _getWebsiteList();
                 });
         }
 
@@ -49,7 +61,7 @@
                 leftLink: {href: "#!/user/" + uid + "/website", iconClass: "glyphicon-triangle-left", name: "Websites"},
                 name: "Edit Website",
                 rightLink: {
-                    clickCb: _saveWebsite,
+                    clickCb: saveWebsite,
                     href: "javascript:void(0)",
                     iconClass: "glyphicon-floppy-save",
                     name: "Save"
@@ -78,17 +90,6 @@
 
             wid = $routeParams["wid"];
             vm.wid = wid;
-        }
-
-        function _saveWebsite() {
-            websiteService
-                .updateWebsite(wid, vm.websiteInfo)
-                .then(function (res) {
-                    vm.errorMsg = res.msg;
-                    vm.successMsg = res.msg ? null : "Website updated";
-
-                    _getWebsiteList();
-                });
         }
     }
 })();

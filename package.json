@@ -9,6 +9,8 @@
     "body-parser": "^1.15.1",
     "bootstrap3": "^3.3.5",
     "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "jqueryui": "^1.11.1",
     "mongoose": "^4.4.15"
   },
   "devDependencies": {},

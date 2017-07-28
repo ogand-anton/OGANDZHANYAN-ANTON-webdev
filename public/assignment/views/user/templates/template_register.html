@@ -1,12 +1,9 @@
 <div>
-    <!-- Nav bar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid navbar-header ">
-            <div class="aoa-navbar-page-name">Register</div>
-        </div>
-    </nav>
+    <div ng-include="model.templates.navHeader"></div>
 
     <div class="container-fluid">
+        <h3 class="text-center">Hello There!</h3>
+
         <div class="alert-danger" ng-show="model.errorMsg">{{model.errorMsg}}</div>
 
         <div class="form-group">
@@ -42,6 +39,5 @@
                    ng-model="userInfo.verifyPassword">
         </div>
         <a class="btn btn-primary btn-block" ng-click="model.registerUser(userInfo)">Register</a>
-        <a class="btn btn-danger  btn-block" href="#!/login">Cancel</a>
     </div>
 </div>

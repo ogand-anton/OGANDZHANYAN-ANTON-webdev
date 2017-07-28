@@ -3,10 +3,15 @@
         .module("WamApp")
         .controller("loginController", loginController);
 
-    function loginController($location, userService) {
+    function loginController($location, sharedService, userService) {
         var vm = this;
 
         vm.login = login;
+
+        (function init() {
+            _fetchTemplates();
+            _initHeaderFooter();
+        })();
 
         function login(loginInfo) {
             userService
@@ -19,6 +24,18 @@
                         $location.url("/user/" + res.user._id);
                     }
                 });
+        }
+
+        function _fetchTemplates() {
+            vm.templates = sharedService.getTemplates();
+        }
+
+        function _initHeaderFooter() {
+            vm.navHeader = {
+                leftLink: {href: "#!", iconClass: "glyphicon-home", name: "Home"},
+                name: "Login",
+                rightLink: {href: "#!/register", iconClass: "glyphicon-edit", name: "Register"}
+            };
         }
     }
 })();

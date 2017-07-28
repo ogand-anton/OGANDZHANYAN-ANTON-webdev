@@ -33,6 +33,15 @@ nav a {
     height: 100%;
 }
 
+.navbar-default a:hover {
+    background-color: rgb(197, 197, 197);
+    color: rgb(0, 20, 81);
+}
+
+.navbar-inverse a:hover {
+    color: rgb(153, 224, 255);
+}
+
 .aoa-navbar-page-name {
     color: rgb(255, 255, 255);
     left: 0;
@@ -68,7 +77,12 @@ nav a {
 
 a:hover{
     text-decoration: none;
-    color: rgb(153, 224, 255);
+}
+
+body,
+a,
+input {
+    font-size: 18px !important;
 }
 
 /************************/

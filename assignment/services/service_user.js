@@ -16,21 +16,22 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var retObj = {},
-            username = req.query.username,
-            password = req.query.password,
+            user = {
+                username: req.query.username,
+                password: req.query.password,
+                emailAddress: req.query.emailAddress
+            },
             passwordVerified = req.query.verifyPassword;
 
-        if (!(username && password)) {
+        if (!(user.username && user.password)) {
             retObj.msg = "User must have a username and a password";
-        } else if (password !== passwordVerified) {
+        } else if (user.password !== passwordVerified) {
             retObj.msg = "Passwords do not match";
         } else {
-            var user = _findUserByUsername(username);
-
-            if (!user) {
-                var newUser = {_id: (nextId++).toString(), username: username, password: password};
-                users.push(newUser);
-                retObj.user = newUser;
+            if (!_findUserByUsername(user.username)) {
+                user._id = (nextId++).toString();
+                users.push(user);
+                retObj.user = user;
             } else {
                 retObj.msg = "Username not available";
             }

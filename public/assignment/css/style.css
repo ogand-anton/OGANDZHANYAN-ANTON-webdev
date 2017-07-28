@@ -1,22 +1,15 @@
 /************************/
-/*        Forms         */
-/************************/
-
-/*input.form-control {*/
-    /*margin-bottom: 5px;*/
-/*}*/
-
-.alert-danger, .alert-success {
-    margin-bottom: 10px;
-}
-
-/************************/
 /*    Misc. Components  */
 /************************/
 
 a.col-xs-push-12,
 a.col-xs-pull-12 {
     position: sticky;
+}
+
+.alert-danger,
+.alert-success {
+    margin-bottom: 10px;
 }
 
 /************************/
@@ -27,7 +20,7 @@ nav {
     max-height: 50px;
 }
 
-nav + * {
+body {
     margin: 50px 0 50px 0;
     padding: 10px 0 10px 0;
 }

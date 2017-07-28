@@ -4,11 +4,16 @@
         .factory("websiteService", websiteService);
 
     function websiteService($http) {
+        var templates = {
+            websiteListGroup: "views/website/templates/template_website_list_group.html"
+        };
+
         return {
             createWebsite: createWebsite,
             deleteWebsite: deleteWebsite,
             findWebsiteById: findWebsiteById,
             findWebsitesByUser: findWebsitesByUser,
+            getTemplates: getTemplates,
             updateWebsite: updateWebsite
         };
 
@@ -47,6 +52,10 @@
             }).then(function (res) {
                 return res.data;
             });
+        }
+
+        function getTemplates() {
+            return templates;
         }
 
         function updateWebsite(websiteId, website) {

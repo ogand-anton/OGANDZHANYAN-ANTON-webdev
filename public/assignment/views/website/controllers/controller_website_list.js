@@ -1,27 +1,48 @@
-(function() {
+(function () {
     angular
         .module("WamApp")
         .controller("websiteListController", websiteListController);
 
-    function websiteListController($routeParams, websiteService) {
+    function websiteListController($routeParams, sharedService, websiteService) {
         var vm = this,
             uid;
 
-        vm.getWebsiteListGroupTemplateUrl = getWebsiteListGroupTemplateUrl;
-
-        (function init(){
-            uid = $routeParams["uid"];
-            vm.uid = uid;
-
-            websiteService
-                .findWebsitesByUser(uid)
-                .then(function(res) {
-                    vm.websites = res.websites;
-                });
+        (function init() {
+            _parseRouteParams();
+            _initHeaderFooter();
+            _fetchTemplates();
+            _loadContent();
         })();
 
-        function getWebsiteListGroupTemplateUrl() {
-            return "views/website/templates/template_website_list_group.html";
+        function _fetchTemplates() {
+            vm.templates = Object.assign(
+                sharedService.getTemplates(),
+                websiteService.getTemplates()
+            );
+        }
+
+        function _initHeaderFooter() {
+            vm.navHeader = {
+                leftLink: {href: "#!/user/" + uid, iconClass: "glyphicon-triangle-left", name: "Profile"},
+                name: "Websites"
+            };
+            vm.navFooter = [
+                {href: "#!/user/" + uid, iconClass: "glyphicon-user", sizeClass: "col-xs-6"},
+                {href: "#!/user/" + uid + "/website/new", iconClass: "glyphicon-plus", sizeClass: "col-xs-6"}
+            ];
+        }
+
+        function _loadContent() {
+            websiteService
+                .findWebsitesByUser(uid)
+                .then(function (res) {
+                    vm.websites = res.websites;
+                });
+        }
+
+        function _parseRouteParams() {
+            uid = $routeParams["uid"];
+            vm.uid = uid;
         }
     }
 })();

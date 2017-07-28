@@ -13,9 +13,6 @@
             uid = $routeParams["uid"];
             vm.uid = uid;
 
-            // TODO this shouldn't be an error msg
-            vm.errorMsg = "Loading...";
-
             userService
                 .findUserById(uid)
                 .then(function(res){

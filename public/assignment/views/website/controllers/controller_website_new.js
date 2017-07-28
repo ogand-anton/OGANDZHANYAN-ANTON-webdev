@@ -3,31 +3,59 @@
         .module("WamApp")
         .controller("websiteNewController", websiteNewController);
 
-    function websiteNewController($routeParams, $location, websiteService) {
+    function websiteNewController($routeParams, $location, sharedService, websiteService) {
         var vm = this,
             uid;
 
-        vm.getWebsiteListGroupTemplateUrl = getWebsiteListGroupTemplateUrl;
-        vm.saveWebsite = saveWebsite;
-
         (function init() {
-            uid = $routeParams["uid"];
-            vm.uid = uid;
+            _parseRouteParams();
+            _fetchTemplates();
+            _initHeaderFooter();
+            _loadContent();
+        })();
+
+        function _fetchTemplates() {
+            vm.templates = Object.assign(
+                sharedService.getTemplates(),
+                websiteService.getTemplates()
+            );
+        }
+
+        function _initHeaderFooter() {
+            vm.navHeader = {
+                leftLink: {href: "#!/user/" + uid + "/website", iconClass: "glyphicon-triangle-left", name: "Websites"},
+                name: "New Website",
+                rightLink: {
+                    clickCb: _saveWebsite,
+                    href: "javascript:void(0)",
+                    iconClass: "glyphicon-floppy-save",
+                    name: "Save"
+                }
+            };
+            vm.navFooter = [
+                {href: "#!/user/" + uid, iconClass: "glyphicon-user", sizeClass: "col-xs-6"},
+                {href: "#!/user/" + uid + "/website/new", iconClass: "glyphicon-plus", sizeClass: "col-xs-6"}
+            ];
+        }
+
+        function _loadContent() {
+            vm.websiteInfo = {};
 
             websiteService
                 .findWebsitesByUser(uid)
                 .then(function (res) {
                     vm.websites = res.websites;
                 });
-        })();
-
-        function getWebsiteListGroupTemplateUrl() {
-            return "views/website/templates/template_website_list_group.html";
         }
 
-        function saveWebsite(websiteInfo) {
+        function _parseRouteParams() {
+            uid = $routeParams["uid"];
+            vm.uid = uid;
+        }
+
+        function _saveWebsite() {
             websiteService
-                .createWebsite(uid, websiteInfo || {})
+                .createWebsite(uid, vm.websiteInfo)
                 .then(function (res) {
                     if (res.msg) {
                         vm.errorMsg = res.msg;

@@ -1,7 +1,3 @@
-(function(module) {
-    module.exports = widgetService;
+module.exports = function (app) {
 
-    function widgetService(app){
-
-    }
-})(module);
+};

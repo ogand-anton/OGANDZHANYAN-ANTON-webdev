@@ -13,8 +13,11 @@
             uid = $routeParams["uid"];
             vm.uid = uid;
 
-            var findWebsitesRs = websiteService.findWebsitesByUser(uid);
-            vm.websites = findWebsitesRs.websites;
+            websiteService
+                .findWebsitesByUser(uid)
+                .then(function(res) {
+                    vm.websites = res.websites;
+                });
         })();
 
         function getWebsiteListGroupTemplateUrl() {

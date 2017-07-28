@@ -1,7 +1,3 @@
-(function(module) {
-    module.exports = pageService;
+module.exports = function (app) {
 
-    function pageService(app){
-
-    }
-})(module);
+};

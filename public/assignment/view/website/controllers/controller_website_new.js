@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module("WamApp")
         .controller("websiteNewController", websiteNewController);
@@ -14,8 +14,11 @@
             uid = $routeParams["uid"];
             vm.uid = uid;
 
-            var findWebsitesRs = websiteService.findWebsitesByUser(uid);
-            vm.websites = findWebsitesRs.websites;
+            websiteService
+                .findWebsitesByUser(uid)
+                .then(function (res) {
+                    vm.websites = res.websites;
+                });
         })();
 
         function getWebsiteListGroupTemplateUrl() {
@@ -24,13 +27,15 @@
 
         function saveWebsite(websiteInfo) {
             websiteInfo = websiteInfo || {};
-            var createWebsiteRs = websiteService.createWebsite(uid, websiteInfo);
-
-            if (createWebsiteRs.msg){
-                vm.errorMsg = createWebsiteRs.msg;
-            } else {
-                $location.url("/user/" + uid + "/website");
-            }
+            websiteService
+                .createWebsite(uid, websiteInfo)
+                .then(function (res) {
+                    if (res.msg) {
+                        vm.errorMsg = res.msg;
+                    } else {
+                        $location.url("/user/" + uid + "/website");
+                    }
+                });
         }
     }
 })();

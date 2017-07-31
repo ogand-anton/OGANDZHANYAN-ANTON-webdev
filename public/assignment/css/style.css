@@ -79,13 +79,6 @@ a:hover{
     text-decoration: none;
 }
 
-body,
-a,
-input,
-textarea {
-    font-size: 18px !important;
-}
-
 /************************/
 /*      Utilities       */
 /************************/

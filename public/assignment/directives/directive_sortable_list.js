@@ -12,7 +12,10 @@
         function _makeSortable(scope, $elem) {
             $elem
                 .find("ul")
-                .sortable({start: scope.startDragCb, stop: scope.stopDragCb});
+                .sortable({
+                    start: function (event, ui) {scope.startDragCb({event: event, ui:ui})},
+                    stop: function (event, ui) {scope.stopDragCb({event: event, ui: ui})}
+                });
         }
     }
 })();

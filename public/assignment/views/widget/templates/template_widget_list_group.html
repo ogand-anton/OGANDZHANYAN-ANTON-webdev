@@ -1,4 +1,4 @@
-<sort-list start-drag-cb="model.startDragCb()" stop-drag-cb="model.stopDragCb()">
+<sort-list start-drag-cb="model.startDragCb(event, ui)" stop-drag-cb="model.stopDragCb(event, ui)">
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="widget in model.widgets">
             <div ng-include="model.templates['list' + widget.widgetType]"></div>

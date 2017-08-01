@@ -5,18 +5,10 @@ module.exports = function (app) {
             {_id: "123", widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
             {_id: "234", widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
             {_id: "567", widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
-            {_id: "900", widgetType: "HEADING", pageId: "998", size: 4, text: "Lorem ipsum"},
             {
                 _id: "345",
                 widgetType: "IMAGE",
                 pageId: "321",
-                width: "100%",
-                url: "http://25.media.tumblr.com/tumblr_m2vl27ITQy1qz5dg8o1_1280.jpg"
-            },
-            {
-                _id: "665",
-                widgetType: "IMAGE",
-                pageId: "998",
                 width: "100%",
                 url: "http://25.media.tumblr.com/tumblr_m2vl27ITQy1qz5dg8o1_1280.jpg"
             },
@@ -27,6 +19,14 @@ module.exports = function (app) {
                 height: 350,
                 width: "100%",
                 url: "https://www.youtube.com/embed/uiz80CuDN8Y"
+            },
+            {_id: "900", widgetType: "HEADING", pageId: "998", size: 4, text: "Lorem ipsum"},
+            {
+                _id: "665",
+                widgetType: "IMAGE",
+                pageId: "998",
+                width: "100%",
+                url: "http://25.media.tumblr.com/tumblr_m2vl27ITQy1qz5dg8o1_1280.jpg"
             },
             {
                 _id: "901",
@@ -62,7 +62,20 @@ module.exports = function (app) {
             retObj.msg = "Widget must have a type and a page id";
         } else {
             widget._id = (nextId++).toString();
-            widgets.push(widget);
+
+            var insertionIndex = 0;
+            var pageFound = false;
+            for (var i = 0; i < widgets.length; i++) {
+                insertionIndex++;
+
+                if (widgets[i].pageId === widget.pageId) {
+                    pageFound = true;
+                } else if (pageFound) {
+                    break; // page found but passed all other widgets for this page
+                }
+            }
+
+            widgets.splice(insertionIndex, 0, widget);
             retObj.widget = widget;
         }
 
@@ -101,14 +114,10 @@ module.exports = function (app) {
     }
 
     function findWidgetsByPageId(req, res) {
-        var retObj = {widgets: []},
+        var retObj = {},
             pageId = req.params.pageId;
 
-        for (var i = 0; i < widgets.length; i++) {
-            if (widgets[i].pageId === pageId) {
-                retObj.widgets.push(widgets[i]);
-            }
-        }
+        retObj.widgets = _findWidgetsByPageId(pageId);
 
         res.send(retObj);
     }
@@ -123,22 +132,46 @@ module.exports = function (app) {
                 width: req.query.width,
                 height: parseInt(req.query.height),
                 url: req.query.url
-            };
+            },
+            sortIndex = parseInt(req.query.sortIndex);
 
         var widget = _findWidgetById(widgetId);
 
         if (widget) {
-            widget.name = newWidgetInfo.name;
-            widget.text = newWidgetInfo.text;
-            widget.size = Math.max(Math.min(newWidgetInfo.size, 5), 1) || widget.size;
-            widget.height = newWidgetInfo.height;
-            widget.width = newWidgetInfo.width;
-            widget.url = newWidgetInfo.url;
+            if (!(sortIndex && sortIndex !== widget.sortIndex)) {
+                widget.name = newWidgetInfo.name;
+                widget.text = newWidgetInfo.text;
+                widget.size = Math.max(Math.min(newWidgetInfo.size, 5), 1) || widget.size;
+                widget.height = newWidgetInfo.height;
+                widget.width = newWidgetInfo.width;
+                widget.url = newWidgetInfo.url;
+            } else {
+                var pageStartIndex = 0;
+                var pageWidgetIndex = 0;
+                var widgetIndex = -1;
+                for (var i = 0; i < widgets.length; i++) {
+                    if (widgets[i].pageId !== widget.pageId) {
+                        pageStartIndex++;
+                    } else if (pageWidgetIndex !== sortIndex) {
+                        pageWidgetIndex++;
+                    }
+
+                    if (widgets[i]._id === widgetId) {
+                        widgetIndex = i;
+                    }
+                }
+                widgets.splice(pageStartIndex + pageWidgetIndex, 0, widgets.splice(widgetIndex, 1)[0]);
+                retObj.widgets = widgets;
+            }
         } else {
             retObj.msg = "Widget with id '" + widgetId + "' not found";
         }
 
         res.json(retObj);
+    }
+
+    function _compareWidgetsBySortId(w1, w2) {
+        return w1.sortId - w2.sortId;
     }
 
     function _findWidgetById(widgetId) {
@@ -152,5 +185,17 @@ module.exports = function (app) {
         }
 
         return widget;
+    }
+
+    function _findWidgetsByPageId(pageId) {
+        var retArr = [];
+
+        for (var i = 0; i < widgets.length; i++) {
+            if (widgets[i].pageId === pageId) {
+                retArr.push(widgets[i]);
+            }
+        }
+
+        return retArr.sort(_compareWidgetsBySortId);
     }
 };

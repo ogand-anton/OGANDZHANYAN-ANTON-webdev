@@ -1,11 +1,12 @@
-(function() {
+(function () {
     angular
         .module("WamApp")
         .controller("widgetListController", widgetListController);
 
     function widgetListController($routeParams, $sce, sharedService, widgetService) {
         var vm = this,
-            uid, wid, pid;
+            uid, wid, pid,
+            draggedWidgetIndex; // only populated during drag
 
         vm.startDragCb = startDragCb;
         vm.stopDragCb = stopDragCb;
@@ -18,15 +19,18 @@
             _loadContent();
         })();
 
-        function startDragCb() {
-            console.log("START");
+        function startDragCb(event, ui) {
+            draggedWidgetIndex = $(ui.item).index();
         }
 
-        function stopDragCb() {
-            console.log("STOP");
+        function stopDragCb(event, ui) {
+            var finalIndex = $(ui.item).index();
+            widgetService.updateWidget(vm.widgets[draggedWidgetIndex]._id, {sortIndex: finalIndex});
+            vm.widgets.splice(finalIndex, 0, vm.widgets.splice(draggedWidgetIndex, 1)[0]);
+            draggedWidgetIndex = undefined;
         }
 
-        function trustYouTubeUrlResource(url){
+        function trustYouTubeUrlResource(url) {
             var youtubeUrl = "https://www.youtube.com/embed/";
             var urlParts = url.split("/");
             youtubeUrl += urlParts[urlParts.length - 1];

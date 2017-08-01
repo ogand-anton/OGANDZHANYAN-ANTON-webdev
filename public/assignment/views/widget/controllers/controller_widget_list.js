@@ -7,6 +7,8 @@
         var vm = this,
             uid, wid, pid;
 
+        vm.startDragCb = startDragCb;
+        vm.stopDragCb = stopDragCb;
         vm.trustYouTubeUrlResource = trustYouTubeUrlResource;
 
         (function init() {
@@ -15,6 +17,14 @@
             _initHeaderFooter();
             _loadContent();
         })();
+
+        function startDragCb() {
+            console.log("START");
+        }
+
+        function stopDragCb() {
+            console.log("STOP");
+        }
 
         function trustYouTubeUrlResource(url){
             var youtubeUrl = "https://www.youtube.com/embed/";

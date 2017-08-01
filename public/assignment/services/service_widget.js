@@ -10,7 +10,8 @@
             editYOUTUBE: "views/widget/templates/template_widget_edit_youtube.html",
             listHEADING: "views/widget/templates/template_widget_list_header.html",
             listIMAGE: "views/widget/templates/template_widget_list_image.html",
-            listYOUTUBE: "views/widget/templates/template_widget_list_youtube.html"
+            listYOUTUBE: "views/widget/templates/template_widget_list_youtube.html",
+            widgetListGroup: "views/widget/templates/template_widget_list_group.html"
         };
 
         return {

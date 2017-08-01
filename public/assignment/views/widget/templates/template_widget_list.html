@@ -1,16 +1,3 @@
 <div ng-include="model.templates.navHeader"></div>
-
-<!-- Widget List -->
-<div class="container-fluid">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="widget in model.widgets">
-            <div ng-include="model.templates['list' + widget.widgetType]"></div>
-            <a class="col-xs-push-12"
-               href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
-                <i class="glyphicon glyphicon-cog"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
+<div class="container-fluid" ng-include="model.templates.widgetListGroup"></div>
 <div ng-include="model.templates.navFooter"></div>

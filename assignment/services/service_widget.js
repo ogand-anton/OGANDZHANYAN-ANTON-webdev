@@ -43,6 +43,7 @@ module.exports = function (app) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post("/api/page/:pageId/widget", createWidget);
+    app.post("/api/upload", uploadImage);
     app.put("/api/widget/:widgetId", updateWidget);
 
     function createWidget(req, res) {
@@ -168,6 +169,23 @@ module.exports = function (app) {
         }
 
         res.json(retObj);
+    }
+
+    function uploadImage(req, res) {
+        var userId = req.body.userId,
+            websiteId = req.body.websiteId,
+            pageId = req.body.pageId,
+            widgetId = req.body.widgetId,
+            myFile = req.file;
+
+        if (myFile) {
+            var widget = _findWidgetById(widgetId);
+            widget.url = "/uploads/" + myFile.filename; // new file name in upload folder
+
+            res.redirect("/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+        } else {
+            res.redirect("/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+        }
     }
 
     function _compareWidgetsBySortId(w1, w2) {

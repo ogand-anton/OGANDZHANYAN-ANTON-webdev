@@ -1,12 +1,7 @@
 (function() {
     angular
         .module("TestApp", [])
-        .controller("TestController", TestController)
-        .filter('reverse', function() {
-            return function(items) {
-                return items.slice().reverse();
-            };
-        });
+        .controller("TestController", TestController);
 
     function TestController($http) {
         var vm = this;

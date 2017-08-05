@@ -1,62 +1,35 @@
 module.exports = function (app) {
+    app.aoaRequire("test/db"); // connect to db
+
+    var testModel = app.aoaRequire("test/model_test")(app);
+
+    app.delete("/api/test/:id", deleteMessage);
     app.get("/api/test", findAllMessages);
     app.post("/api/test", createMessage);
-    app.delete("/api/test/:id", deleteMessage);
-
-    var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
-    if (process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
-        var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-        var password = process.env.MLAB_PASSWORD_WEBDEV;
-        connectionString = 'mongodb://' + username + ':' + password;
-        connectionString += '@ds149382.mlab.com:49382/heroku_3djpv444'; // user yours
-    }
-
-    var mongoose = require("mongoose");
-    mongoose.connect(connectionString, {useMongoClient: true});
-
-    var TestSchema = mongoose.Schema({
-        message: String
-    });
-
-    var TestModel = mongoose.model("TestModel", TestSchema);
-
-    function findAllMessages(req, res) {
-        console.log("Params: " + req.params);
-        TestModel
-            .find()
-            .then(
-                function (tests) {
-                    res.json(tests);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
-    }
 
     function createMessage(req, res) {
-        TestModel
-            .create(req.body)
-            .then(
-                function (test) {
-                    res.json(test);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+        testModel
+            .createMessage(req.body)
+            .then(_genSuccessCb(res), _genErrorCb(res));
     }
 
     function deleteMessage(req, res) {
-        TestModel
-            .remove({_id: req.params.id})
-            .then(
-                function (result) {
-                    res.json(result);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+        testModel
+            .deleteMessage(req.params.id)
+            .then(_genSuccessCb(res), _genErrorCb(res));
+    }
+
+    function findAllMessages(req, res) {
+        testModel
+            .findAllMessages()
+            .then(_genSuccessCb(res), _genErrorCb(res));
+    }
+
+    function _genErrorCb(res) {
+        return function (err) {res.status(400).send(err)};
+    }
+
+    function _genSuccessCb(res) {
+        return function (results) {res.json(results)};
     }
 };

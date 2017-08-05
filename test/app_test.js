@@ -1,7 +1,5 @@
 module.exports = function (app) {
-    app.aoaRequire("test/db"); // connect to db
-
-    var testModel = app.aoaRequire("test/model_test")(app);
+    var testModel = app.aoaRequire("test/model_test.js")(app);
 
     app.delete("/api/test/:id", deleteMessage);
     app.get("/api/test", findAllMessages);

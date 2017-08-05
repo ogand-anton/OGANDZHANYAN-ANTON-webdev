@@ -23,5 +23,6 @@ app.aoaRelativeFilePath = function(path){
 };
 
 // app imports
-app.aoaRequire("test/app.js")(app);
-app.aoaRequire("assignment/app.js")(app);
+app.aoaRequire("assignment/app_assignment.js")(app);
+app.aoaRequire("db/db.js");
+app.aoaRequire("test/app_test.js")(app);

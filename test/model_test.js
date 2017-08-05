@@ -2,7 +2,7 @@ module.exports = function (app) {
     var mongoose = require("mongoose"),
         testSchema = app.aoaRequire("/test/schema_test");
 
-    var testModel = mongoose.model("TestModel", testSchema);
+    var testModel = mongoose.model("TestModel", testSchema, testSchema.options.collection);
 
     return Object.assign(testModel, {
         createMessage: createMessage,

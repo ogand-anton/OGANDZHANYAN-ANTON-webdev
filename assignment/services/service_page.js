@@ -1,13 +1,7 @@
 module.exports = function (app) {
-    var pages = [
-            {_id: "321", name: "Post 1", websiteId: "456", description: "Lorem"},
-            {_id: "432", name: "Post 2", websiteId: "456", description: "Lorem"},
-            {_id: "543", name: "Post 3", websiteId: "456", description: "Lorem"},
-            {_id: "999", name: "Post 1", websiteId: "567", description: "Lorem"},
-            {_id: "998", name: "Post 2", websiteId: "567", description: "Lorem"},
-            {_id: "997", name: "Post 3", websiteId: "567", description: "Lorem"}
-        ],
-        nextId = 666;
+    var model = app.aoaRequire("/assignment/models/model.js")(app),
+        pageModel = model.pageModel,
+        websiteModel = model.websiteModel;
 
     app.get("/api/page/:pageId", findPageById);
     app.get("/api/website/:websiteId/page", findPagesByWebsiteId);
@@ -16,99 +10,92 @@ module.exports = function (app) {
     app.put("/api/page/:pageId", updatePage);
 
     function createPage(req, res) {
-        var retObj = {},
-            page = {
+        var websiteId = req.params.websiteId,
+            newPage = {
                 name: req.query.name,
-                description: req.query.name,
-                websiteId: req.params.websiteId
+                description: req.query.description
             };
 
-        if (!(page.name && page.websiteId)) {
-            retObj.msg = "Page must have a name and a website";
+        if (!(newPage.name && websiteId)) {
+            res.json({msg: "Page must have a name and a website"});
         }
         else {
-            page._id = (nextId++).toString();
-            pages.push(page);
-            retObj.page = page;
+            pageModel
+                .createPageForWebsite(websiteId, newPage)
+                .then(function (page) {
+                        websiteModel
+                            .findWebsiteById(websiteId)
+                            .then(function (website) {
+                                website.pages.push(page._id);
+                                websiteModel
+                                    .updateWebsite(websiteId, {pages: website.pages})
+                                    .then(_genSuccessCb(res));
+                            });
+                    },
+                    _genErrorCb(res)
+                );
         }
-
-        res.json(retObj);
     }
 
     function deletePage(req, res) {
-        var retObj = {},
-            pageId = req.params.pageId,
-            foundFlag = false;
+        var pageId = req.params.pageId;
 
-        for (var i = 0; i < pages.length && !foundFlag; i++) {
-            if (pages[i]._id === pageId) {
-                foundFlag = true;
-                pages.splice(i, 1);
-            }
-        }
-
-        if (!foundFlag) {
-            retObj.msg = "Page with id '" + pageId + "' not found"
-        }
-
-        res.json(retObj);
+        pageModel
+            .deletePage(pageId)
+            .then(_genSuccessCb(res), _genErrorCb(res));
     }
 
     function findPageById(req, res) {
-        var retObj = {},
-            pageId = req.params.pageId;
+        var pageId = req.params.pageId;
 
-        var page = _findPageById(pageId);
-
-        retObj.page = page;
-        retObj.msg = page ? null : "Page with id '" + pageId + "' not found";
-
-        res.json(retObj);
+        pageModel
+            .findPageById(pageId)
+            .then(
+                function (page) {
+                    res.json({page: page})
+                },
+                _genErrorCb(res)
+            );
     }
 
     function findPagesByWebsiteId(req, res) {
-        var retObj = {pages: []},
-            websiteId = req.params.websiteId;
+        var websiteId = req.params.websiteId;
 
-        for (var i = 0; i < pages.length; i++) {
-            if (pages[i].websiteId === websiteId) {
-                retObj.pages.push(pages[i]);
-            }
-        }
-
-        res.json(retObj);
+        pageModel
+            .findPagesForWebsite(websiteId)
+            .then(
+                function (pages) {
+                    res.json({pages: pages})
+                },
+                _genErrorCb(res)
+            );
     }
 
     function updatePage(req, res) {
-        var retObj = {},
-            pageId = req.params.pageId,
+        var pageId = req.params.pageId,
             newPageInfo = {
                 name: req.query.name,
                 description: req.query.description
             };
 
-        var page = _findPageById(pageId);
-
-        if (page) {
-            page.name = newPageInfo.name || page.name; // not clearable
-            page.description = newPageInfo.description;
-        } else {
-            retObj.msg = "Page with id '" + pageId + "' not found";
-        }
-
-        res.json(retObj);
+        pageModel
+            .updatePage(pageId, newPageInfo)
+            .then(function (page) {
+                    res.json({page: page})
+                },
+                _genErrorCb(res));
     }
 
-    function _findPageById(pageId) {
-        var page = null;
-
-        for (var i = 0; i < pages.length; i++) {
-            if (pages[i]._id === pageId) {
-                page = pages[i];
-                break;
-            }
+    function _genErrorCb(res) {
+        return function (err) {
+            // res.status(400).send(err);
+            res.json({msg: err.message});
         }
+    }
 
-        return page;
+    function _genSuccessCb(res) {
+        return function (results) {
+            res.json({result: results});
+        };
     }
 };

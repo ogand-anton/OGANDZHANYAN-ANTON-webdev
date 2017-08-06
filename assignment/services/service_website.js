@@ -40,26 +40,28 @@ module.exports = function (app) {
     function deleteWebsite(req, res) {
         var websiteId = req.params.websiteId;
 
-        websiteModel
-            .findWebsiteById(websiteId)
-            .then(function (website) {
+        // TODO cascading deletes
+        // websiteModel
+        //     .findWebsiteById(websiteId)
+        //     .then(function (website) {
                 websiteModel
                     .deleteWebsite(websiteId)
-                    .then(function () {
-                            userModel
-                                .findUserById(website._user)
-                                .then(function (user) {
-                                    var index = user.websites.indexOf(website._id);
-                                    user.websites.splice(index, 1);
-
-                                    userModel
-                                        .updateUser(user._id, {websites: user.websites})
-                                        .then(_genSuccessCb(res));
-                                });
-                        },
-                        _genErrorCb(res)
-                    );
-            });
+                    .then(_genSuccessCb(res), _genErrorCb(res));
+                    // .then(function () {
+                    //         // userModel
+                    //         //     .findUserById(website._user)
+                    //         //     .then(function (user) {
+                    //         //         var index = user.websites.indexOf(website._id);
+                    //         //         user.websites.splice(index, 1);
+                    //         //
+                    //         //         userModel
+                    //         //             .updateUser(user._id, {websites: user.websites})
+                    //         //             .then(_genSuccessCb(res));
+                    //         //     });
+                    //     },
+                    //     _genErrorCb(res)
+                    // );
+            // });
     }
 
     function findWebsiteById(req, res) {

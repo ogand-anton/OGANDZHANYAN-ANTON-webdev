@@ -2,10 +2,11 @@ module.exports = function (app) {
     var mongoose = require("mongoose");
 
     return mongoose.Schema({
-        _user: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
+        _website: {type: mongoose.Schema.Types.ObjectId, ref: "website"},
         name: {type: String},
+        title: {type: String},
         description: {type: String},
-        pages: [{type: mongoose.Schema.Types.ObjectId, ref: "page"}],
+        widgets: [String],
         dateCreated: {type: Date, required: true, default: Date.now}
-    }, {collection: "website"});
+    }, {collection: "page"});
 };

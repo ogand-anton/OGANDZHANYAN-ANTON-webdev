@@ -3,7 +3,7 @@ module.exports = function (app) {
 
     return mongoose.Schema({
         _page: {type: mongoose.Schema.Types.ObjectId, ref: "page"},
-        widgetType: {type: String, enum: ["HEADING", "IMAGE", "YOUTUBE", "HTML", "INPUT"]},
+        widgetType: {type: String, enum: ["HEADING", "IMAGE", "YOUTUBE", "HTML", "TEXT"]},
         name: {type: String},
         text: {type: String},
         description: {type: String},

@@ -8,6 +8,7 @@
             {widgetType: "HEADING", displayName: "Header"},
             {widgetType: "HTML", displayName: "HTML"},
             {widgetType: "IMAGE", displayName: "Image"},
+            {widgetType: "TEXT", displayName: "Text Input"},
             {widgetType: "YOUTUBE", displayName: "YouTube"}
         ];
 
@@ -25,7 +26,7 @@
 
         function createWidget(widget) {
             widgetService
-                .createWidget(pid, widget)
+                .createWidget(pid, {widgetType: widget.widgetType})
                 .then(function(res){
                     if (res.msg) {
                         vm.errorMsg = res.msg;

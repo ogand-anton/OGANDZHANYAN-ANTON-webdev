@@ -8,10 +8,12 @@
             editHEADING: "views/widget/templates/template_widget_edit_header.html",
             editHTML: "views/widget/templates/template_widget_edit_html.html",
             editIMAGE: "views/widget/templates/template_widget_edit_image.html",
+            editTEXT: "views/widget/templates/template_widget_edit_text.html",
             editYOUTUBE: "views/widget/templates/template_widget_edit_youtube.html",
             listHEADING: "views/widget/templates/template_widget_list_header.html",
             listHTML: "views/widget/templates/template_widget_list_html.html",
             listIMAGE: "views/widget/templates/template_widget_list_image.html",
+            listTEXT: "views/widget/templates/template_widget_list_text.html",
             listYOUTUBE: "views/widget/templates/template_widget_list_youtube.html",
             widgetListGroup: "views/widget/templates/template_widget_list_group.html"
         };

@@ -25,7 +25,7 @@
 
         function stopDragCb(event, ui) {
             var finalIndex = $(ui.item).index();
-            widgetService.updateWidget(vm.widgets[draggedWidgetIndex]._id, {sortIndex: finalIndex});
+            widgetService.reorderWidget(pid, vm.widgets[draggedWidgetIndex]._id, finalIndex);
             vm.widgets.splice(finalIndex, 0, vm.widgets.splice(draggedWidgetIndex, 1)[0]);
             draggedWidgetIndex = undefined;
         }

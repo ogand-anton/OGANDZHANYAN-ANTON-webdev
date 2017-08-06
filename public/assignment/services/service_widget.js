@@ -20,6 +20,7 @@
             findWidgetById: findWidgetById,
             findWidgetsByPageId: findWidgetsByPageId,
             getTemplates: getTemplates,
+            reorderWidget: reorderWidget,
             updateWidget: updateWidget
         };
 
@@ -64,14 +65,14 @@
             return templates;
         }
 
+        function reorderWidget(pageId, widgetId, sortIndex){
+            return $http.put("/api/page/" + pageId + "/widget", {widgetId: widgetId, sortIndex: sortIndex});
+        }
+
         function updateWidget(widgetId, widget) {
-            return $http({
-                url: "/api/widget/" + widgetId,
-                method: "PUT",
-                params: widget
-            }).then(function (res) {
-                return res.data;
-            });
+            return $http
+                .put("/api/widget/" + widgetId, widget)
+                .then(function(res){return res.data});
         }
     }
 })();

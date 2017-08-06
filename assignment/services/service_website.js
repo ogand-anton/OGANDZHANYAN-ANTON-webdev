@@ -1,6 +1,5 @@
-module.exports = function (app) {
-    var model = app.aoaRequire("/assignment/models/model.js")(app),
-        userModel = model.userModel,
+module.exports = function (app, model) {
+    var userModel = model.userModel,
         websiteModel = model.websiteModel;
 
     app.get("/api/user/:userId/website", findWebsitesByUser);

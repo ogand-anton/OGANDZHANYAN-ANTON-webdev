@@ -1,6 +1,5 @@
-module.exports = function (app) {
-    var model = app.aoaRequire("assignment/models/model.js")(app),
-        userModel = model.userModel;
+module.exports = function (app, model) {
+    var userModel = model.userModel;
 
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/login", login);

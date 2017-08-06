@@ -10,6 +10,7 @@
 
         vm.startDragCb = startDragCb;
         vm.stopDragCb = stopDragCb;
+        vm.trustHtmlResource = trustHtmlResource;
         vm.trustYouTubeUrlResource = trustYouTubeUrlResource;
 
         (function init() {
@@ -28,6 +29,10 @@
             widgetService.reorderWidget(pid, vm.widgets[draggedWidgetIndex]._id, finalIndex);
             vm.widgets.splice(finalIndex, 0, vm.widgets.splice(draggedWidgetIndex, 1)[0]);
             draggedWidgetIndex = undefined;
+        }
+
+        function trustHtmlResource(text) {
+            return $sce.trustAsHtml(text);
         }
 
         function trustYouTubeUrlResource(url) {

@@ -6,9 +6,11 @@
     function widgetService($http) {
         var templates = {
             editHEADING: "views/widget/templates/template_widget_edit_header.html",
+            editHTML: "views/widget/templates/template_widget_edit_html.html",
             editIMAGE: "views/widget/templates/template_widget_edit_image.html",
             editYOUTUBE: "views/widget/templates/template_widget_edit_youtube.html",
             listHEADING: "views/widget/templates/template_widget_list_header.html",
+            listHTML: "views/widget/templates/template_widget_list_html.html",
             listIMAGE: "views/widget/templates/template_widget_list_image.html",
             listYOUTUBE: "views/widget/templates/template_widget_list_youtube.html",
             widgetListGroup: "views/widget/templates/template_widget_list_group.html"

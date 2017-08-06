@@ -6,6 +6,7 @@
     function widgetNewController($routeParams, $location, sharedService, widgetService) {
         var widgetOptions = [
             {widgetType: "HEADING", displayName: "Header"},
+            {widgetType: "HTML", displayName: "HTML"},
             {widgetType: "IMAGE", displayName: "Image"},
             {widgetType: "YOUTUBE", displayName: "YouTube"}
         ];

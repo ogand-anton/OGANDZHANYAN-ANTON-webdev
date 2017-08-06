@@ -1,5 +1,6 @@
 module.exports = function (app) {
-    var userModel = app.aoaRequire("/assignment/models/user/model_user.js")(app);
+    var model = app.aoaRequire("assignment/models/model.js")(app),
+        userModel = model.userModel;
 
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/login", login);
@@ -24,7 +25,7 @@ module.exports = function (app) {
             userModel
                 .findUserByUsername(newUser.username)
                 .then(
-                    function(user){
+                    function (user) {
                         if (user) {
                             res.json({msg: "Username taken"});
                         } else {
@@ -43,7 +44,7 @@ module.exports = function (app) {
         userModel
             .deleteUser(userId)
             .then(
-                function(result){
+                function (result) {
                     retObj.json(result);
                 },
                 _genErrorCb(res)
@@ -72,7 +73,7 @@ module.exports = function (app) {
         userModel
             .findUserById(userId)
             .then(
-                function(user){
+                function (user) {
                     if (user) {
                         res.json({user: user});
                     } else {
@@ -112,16 +113,16 @@ module.exports = function (app) {
 
         userModel
             .findUserById(userId)
-            .then(function(user) {
-                if (user){
+            .then(function (user) {
+                if (user) {
                     userModel
                         .findUserByUsername(newUserInfo.username)
-                        .then(function(newUser){
-                            if (!newUser) {
+                        .then(function (newUser) {
+                            if (!newUser || newUser._id.equals(userId)) {
                                 userModel
                                     .updateUser(userId, newUserInfo)
                                     .then(
-                                        function(updatedUser){
+                                        function (updatedUser) {
                                             res.json({user: updatedUser});
                                         },
                                         _genErrorCb(res)

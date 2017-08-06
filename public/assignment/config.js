@@ -70,5 +70,10 @@
                 controller: "widgetEditController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/search", {
+                templateUrl: "views/widget/templates/template_widget_flickr.html",
+                controller: "widgetFlickrController",
+                controllerAs: "model"
+            })
     }
 })();

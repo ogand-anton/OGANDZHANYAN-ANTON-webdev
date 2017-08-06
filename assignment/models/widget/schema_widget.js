@@ -9,7 +9,7 @@ module.exports = function (app) {
         description: {type: String},
         placeholder: {type: String},
         url: {type: String},
-        width: {type: String},
+        width: {type: String, default: "100%"},
         height: {type: String},
         rows: {type: Number},
         size: {type: Number},
